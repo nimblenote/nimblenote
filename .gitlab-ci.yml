@@ -1,0 +1,8 @@
+image: electronuserland/builder:latest
+
+before_script:
+  - yarn
+
+build:
+  script:
+    - yarn dist
