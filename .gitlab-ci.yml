@@ -5,4 +5,6 @@ before_script:
 
 build:
   script:
+    - yarn lint
+    - yarn test
     - yarn dist
