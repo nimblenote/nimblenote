@@ -23,4 +23,7 @@ module.exports = {
   ],
   rules: {
   },
+  settings: {
+    'import/core-modules': ['electron'],
+  }
 };
