@@ -8,7 +8,15 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 let mainWindow;
 
 function createMainWindow() {
-  const window = new BrowserWindow({ webPreferences: { nodeIntegration: true } });
+  const window = new BrowserWindow({
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    backgroundColor: '#21252b',
+    titleBarStyle: 'hidden',
+    width: 400,
+    height: 600,
+  });
 
   if (isDevelopment) {
     window.webContents.openDevTools();

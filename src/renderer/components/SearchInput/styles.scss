@@ -1,0 +1,25 @@
+$bgColor: rgba(0, 43, 54, 1);
+$textColor: rgba(130, 150, 150, 1);
+
+.searchinput {
+  flex: none;
+  padding: 5px;
+  margin: 5px 0;
+
+  input {
+    background: inherit;
+    border: 3px solid #3a3f4b;
+    border-radius: 3px;
+    color: $textColor;
+    font-family: 'Fira Mono';
+    font-size: 20px;
+    margin: 0;
+    outline: none;
+    padding: 8px;
+    width: 100%;
+
+    &:focus {
+      border-color: #568af2;
+    }
+  }
+}
