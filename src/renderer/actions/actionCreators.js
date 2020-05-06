@@ -1,9 +1,16 @@
 import fs from 'fs';
 
+import { ipcRenderer } from 'electron';
+
 import NotesHandler from '../lib/NotesHandler';
 import NotedActions from './NotedActions';
 
-const notes = new NotesHandler('/Users/davidwinter/test-new-notes', fs);
+const notesStoragePath = ipcRenderer.sendSync(
+  'getPreference',
+  'notesStoragePath',
+);
+
+const notes = new NotesHandler(notesStoragePath, fs);
 notes.setup();
 const notedActions = new NotedActions(notes);
 
