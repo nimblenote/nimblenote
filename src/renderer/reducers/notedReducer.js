@@ -17,26 +17,30 @@ export const initialState = {
 export function notedReducer(state, action) {
   switch (action.type) {
     case Actions.SHOW_TITLEBAR:
-      return Object.assign(state, {
+      return {
+        ...state,
         titlebar: action.titlebar,
-      });
+      };
     case Actions.SHOW_HELP:
-      return Object.assign(state, {
+      return {
+        ...state,
         searchValue: '?',
         query: '?',
         files: [],
         editorContent: action.helpText,
         editorDisabled: true,
         newlyCreatedFile: false,
-      });
+      };
     case Actions.LOAD_FILES:
-      return Object.assign(state, {
+      return {
+        ...state,
         allFiles: action.files,
         files: action.files,
         newlyCreatedFile: false,
-      });
+      };
     case Actions.CHANGE_SELECTED_FILE:
-      return Object.assign(state, {
+      return {
+        ...state,
         fileIndex: action.nextIndex,
         editorContent: action.content,
         searchValue: action.filename,
@@ -45,9 +49,10 @@ export function notedReducer(state, action) {
         query: action.filename,
         editorDisabled: false,
         newlyCreatedFile: false,
-      });
+      };
     case Actions.SEARCH_QUERY:
-      return Object.assign(state, {
+      return {
+        ...state,
         searchValue: action.searchValue,
         query: action.query,
         startSelection: action.startSelection,
@@ -57,9 +62,10 @@ export function notedReducer(state, action) {
         editorContent: action.content,
         editorDisabled: action.selectedFileIndex === '',
         newlyCreatedFile: false,
-      });
+      };
     case Actions.CREATE_FILE:
-      return Object.assign(state, {
+      return {
+        ...state,
         searchValue: action.filename,
         query: '',
         files: [action.filename],
@@ -68,14 +74,16 @@ export function notedReducer(state, action) {
         editorContent: '',
         editorDisabled: false,
         newlyCreatedFile: true,
-      });
+      };
     case Actions.UPDATE_FILE:
-      return Object.assign(state, {
+      return {
+        ...state,
         editorContent: action.content,
         newlyCreatedFile: false,
-      });
+      };
     case Actions.RESET_TO_INITIAL_STATE:
-      return Object.assign(state, {
+      return {
+        ...state,
         searchValue: '',
         query: '',
         files: state.allFiles,
@@ -83,9 +91,10 @@ export function notedReducer(state, action) {
         editorContent: '',
         editorDisabled: true,
         newlyCreatedFile: false,
-      });
+      };
     case Actions.DELETE_FILE:
-      return Object.assign(state, {
+      return {
+        ...state,
         searchValue: '',
         query: '',
         files: action.files,
@@ -94,7 +103,7 @@ export function notedReducer(state, action) {
         editorContent: '',
         editorDisabled: true,
         newlyCreatedFile: false,
-      });
+      };
     default:
       return state;
   }
