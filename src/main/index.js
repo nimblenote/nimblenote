@@ -1,10 +1,24 @@
-import { app, BrowserWindow } from 'electron';
+import { ipcMain, app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
+import Store from 'electron-store'
+
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-// global reference to mainWindow (necessary to prevent window from being garbage collected)
+const preferences = new Store({
+  name: 'noted',
+  defaults: {
+    notesStoragePath: path.join(app.getPath('userData'), 'NotedNotes'),
+    windowWidth: 400,
+    windowHeight: 600
+  }
+});
+
+ipcMain.on('getPreference', (event, arg) => {
+  event.returnValue = preferences.get(arg);
+});
+
 let mainWindow;
 
 function createMainWindow() {
@@ -14,8 +28,8 @@ function createMainWindow() {
     },
     backgroundColor: '#21252b',
     titleBarStyle: 'hidden',
-    width: 400,
-    height: 600,
+    width: preferences.get('windowWidth'),
+    height: preferences.get('windowHeight'),
   });
 
   if (isDevelopment) {
