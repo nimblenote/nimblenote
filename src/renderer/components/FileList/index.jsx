@@ -9,7 +9,7 @@ export default function FileList(props) {
     if (props.files) {
         files = props.files.map((item, i) => {
             const selected =
-              this.props.selectedIndex.toString() === i.toString();
+              props.selectedIndex.toString() === i.toString();
 
             return (
               <li
