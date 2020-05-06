@@ -22,6 +22,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    'no-underscore-dangle': 'off',
   },
   settings: {
     'import/core-modules': ['electron'],

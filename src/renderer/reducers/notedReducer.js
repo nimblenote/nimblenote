@@ -1,0 +1,101 @@
+import * as Actions from '../actions/actionTypes';
+
+export const initialState = {
+  titlebar: true,
+  searchValue: '',
+  query: '',
+  startSelection: false,
+  endSelection: false,
+  allFiles: [],
+  files: [],
+  fileIndex: '',
+  editorContent: '',
+  editorDisabled: true,
+  newlyCreatedFile: false,
+};
+
+export function notedReducer(state, action) {
+  switch (action.type) {
+    case Actions.SHOW_TITLEBAR:
+      return Object.assign(state, {
+        titlebar: action.titlebar,
+      });
+    case Actions.SHOW_HELP:
+      return Object.assign(state, {
+        searchValue: '?',
+        query: '?',
+        files: [],
+        editorContent: action.helpText,
+        editorDisabled: true,
+        newlyCreatedFile: false,
+      });
+    case Actions.LOAD_FILES:
+      return Object.assign(state, {
+        allFiles: action.files,
+        files: action.files,
+        newlyCreatedFile: false,
+      });
+    case Actions.CHANGE_SELECTED_FILE:
+      return Object.assign(state, {
+        fileIndex: action.nextIndex,
+        editorContent: action.content,
+        searchValue: action.filename,
+        startSelection: false,
+        endSelection: false,
+        query: action.filename,
+        editorDisabled: false,
+        newlyCreatedFile: false,
+      });
+    case Actions.SEARCH_QUERY:
+      return Object.assign(state, {
+        searchValue: action.searchValue,
+        query: action.query,
+        startSelection: action.startSelection,
+        endSelection: action.endSelection,
+        files: action.results,
+        fileIndex: action.selectedFileIndex,
+        editorContent: action.content,
+        editorDisabled: action.selectedFileIndex === '',
+        newlyCreatedFile: false,
+      });
+    case Actions.CREATE_FILE:
+      return Object.assign(state, {
+        searchValue: action.filename,
+        query: '',
+        files: [action.filename],
+        allFiles: state.allFiles.concat([action.filename]),
+        fileIndex: 0,
+        editorContent: '',
+        editorDisabled: false,
+        newlyCreatedFile: true,
+      });
+    case Actions.UPDATE_FILE:
+      return Object.assign(state, {
+        editorContent: action.content,
+        newlyCreatedFile: false,
+      });
+    case Actions.RESET_TO_INITIAL_STATE:
+      return Object.assign(state, {
+        searchValue: '',
+        query: '',
+        files: state.allFiles,
+        fileIndex: '',
+        editorContent: '',
+        editorDisabled: true,
+        newlyCreatedFile: false,
+      });
+    case Actions.DELETE_FILE:
+      return Object.assign(state, {
+        searchValue: '',
+        query: '',
+        files: action.files,
+        allFiles: action.files,
+        fileIndex: '',
+        editorContent: '',
+        editorDisabled: true,
+        newlyCreatedFile: false,
+      });
+    default:
+      return state;
+  }
+}

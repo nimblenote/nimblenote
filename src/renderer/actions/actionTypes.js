@@ -1,0 +1,10 @@
+export const LOAD_FILES = 'LOAD_FILES';
+export const CHANGE_SELECTED_FILE = 'CHANGE_SELECTED_FILE';
+export const RESET_TO_INITIAL_STATE = 'RESET_TO_INITIAL_STATE';
+export const CREATE_FILE = 'CREATE_FILE';
+export const UPDATE_FILE = 'UPDATE_FILE';
+export const SEARCH_QUERY = 'SEARCH_QUERY';
+export const DELETE_FILE = 'DELETE_FILE';
+export const SHOW_HELP = 'SHOW_HELP';
+export const ERROR = 'ERROR';
+export const SHOW_TITLEBAR = 'SHOW_TITLEBAR';
