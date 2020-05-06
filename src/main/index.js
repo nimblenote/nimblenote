@@ -2,7 +2,7 @@ import { ipcMain, app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
-import Store from 'electron-store'
+import Store from 'electron-store';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -11,12 +11,12 @@ const preferences = new Store({
   defaults: {
     notesStoragePath: path.join(app.getPath('userData'), 'NotedNotes'),
     windowWidth: 400,
-    windowHeight: 600
-  }
+    windowHeight: 600,
+  },
 });
 
 ipcMain.on('getPreference', (event, arg) => {
-  event.returnValue = preferences.get(arg);
+  event.returnValue = preferences.get(arg); // eslint-disable-line no-param-reassign
 });
 
 let mainWindow;

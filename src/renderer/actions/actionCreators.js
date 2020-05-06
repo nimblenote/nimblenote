@@ -7,7 +7,7 @@ import NotedActions from './NotedActions';
 
 const notesStoragePath = ipcRenderer.sendSync(
   'getPreference',
-  'notesStoragePath'
+  'notesStoragePath',
 );
 
 const notes = new NotesHandler(notesStoragePath, fs);
