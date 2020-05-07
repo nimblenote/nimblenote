@@ -3,6 +3,6 @@ import { render } from 'react-dom';
 
 import './app.global.scss';
 
-import NotedApp from './components/NotedApp';
+import NotedApp from './containers/NotedApp';
 
 render(<NotedApp />, document.getElementById('app'));
