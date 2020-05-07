@@ -1,12 +1,13 @@
 {
   "name": "noted",
   "productName": "Noted",
+  "description": "Your notes, powered by the keyboard",
   "author": {
     "name": "David Winter",
     "email": "i@djw.me",
     "url": "https://davidwinter.dev"
   },
-  "version": "0.6.1",
+  "version": "0.6.3",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
@@ -41,7 +42,8 @@
       "target": "zip"
     },
     "linux": {
-      "target": "AppImage"
+      "target": "snap",
+      "category": "Utility"
     }
   },
   "dependencies": {
