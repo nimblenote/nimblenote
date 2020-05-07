@@ -1,8 +1,12 @@
-import { ipcMain, app, BrowserWindow } from 'electron';
+import {
+  ipcMain, app, BrowserWindow, nativeTheme,
+} from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
 import Store from 'electron-store';
+
+nativeTheme.themeSource = 'dark'; // waiting on Electron fix in v9 for Linux
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
