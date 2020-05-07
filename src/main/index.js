@@ -1,10 +1,14 @@
 import {
-  ipcMain, app, BrowserWindow,
+  ipcMain, app, BrowserWindow, dialog,
 } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
 import Store from 'electron-store';
+
+import logger from '../renderer/lib/logger';
+
+logger.info('Noted');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -17,8 +21,15 @@ const preferences = new Store({
   },
 });
 
+logger.debug('Preferences:', preferences.store);
+logger.debug('Preferences path:', preferences)
+
 ipcMain.on('getPreference', (event, arg) => {
   event.returnValue = preferences.get(arg); // eslint-disable-line no-param-reassign
+});
+
+ipcMain.on('showError', (event, arg) => {
+  dialog.showErrorBox(arg.title, arg.content);
 });
 
 let mainWindow;

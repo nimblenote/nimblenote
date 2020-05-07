@@ -2,6 +2,8 @@ import fs from 'fs';
 
 import { ipcRenderer } from 'electron';
 
+import checkAndProcessError from '../lib/checkAndProcessError';
+
 import NotesHandler from '../lib/NotesHandler';
 import NotedActions from './NotedActions';
 
@@ -13,10 +15,6 @@ const notesStoragePath = ipcRenderer.sendSync(
 const notes = new NotesHandler(notesStoragePath, fs);
 notes.setup();
 const notedActions = new NotedActions(notes);
-
-function checkAndProcessError(data) { // placeholder
-  return data;
-}
 
 // Is this an unnecessary middleman to NotedActions?
 

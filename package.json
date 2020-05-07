@@ -37,7 +37,8 @@
     "mousetrap": "^1.6.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "source-map-support": "^0.5.16"
+    "source-map-support": "^0.5.16",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.9.4",
