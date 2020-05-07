@@ -12,6 +12,7 @@ export const initialState = {
   editorContent: '',
   editorDisabled: true,
   newlyCreatedFile: false,
+  focusOnSearch: true,
 };
 
 export function notedReducer(state, action) {
@@ -49,6 +50,7 @@ export function notedReducer(state, action) {
         query: action.filename,
         editorDisabled: false,
         newlyCreatedFile: false,
+        focusOnSearch: false,
       };
     case Actions.SEARCH_QUERY:
       return {
@@ -74,12 +76,14 @@ export function notedReducer(state, action) {
         editorContent: '',
         editorDisabled: false,
         newlyCreatedFile: true,
+        focusOnSearch: false,
       };
     case Actions.UPDATE_FILE:
       return {
         ...state,
         editorContent: action.content,
         newlyCreatedFile: false,
+        focusOnSearch: false,
       };
     case Actions.RESET_TO_INITIAL_STATE:
       return {
@@ -91,6 +95,7 @@ export function notedReducer(state, action) {
         editorContent: '',
         editorDisabled: true,
         newlyCreatedFile: false,
+        focusOnSearch: true,
       };
     case Actions.DELETE_FILE:
       return {
@@ -103,6 +108,7 @@ export function notedReducer(state, action) {
         editorContent: '',
         editorDisabled: true,
         newlyCreatedFile: false,
+        focusOnSearch: true,
       };
     default:
       return state;
