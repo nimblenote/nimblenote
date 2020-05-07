@@ -22,7 +22,7 @@ const preferences = new Store({
 });
 
 logger.debug('Preferences:', preferences.store);
-logger.debug('Preferences path:', preferences)
+logger.debug('Preferences path:', preferences);
 
 ipcMain.on('getPreference', (event, arg) => {
   event.returnValue = preferences.get(arg); // eslint-disable-line no-param-reassign

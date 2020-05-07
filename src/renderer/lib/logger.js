@@ -7,24 +7,24 @@ const logger = winston.createLogger({
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize(),
-        winston.format.simple()
-      )
-    })
-  ]
+        winston.format.simple(),
+      ),
+    }),
+  ],
 });
 
 if (process.env.NODE_ENV !== 'production') {
   const logFilepath = path.join(
     process.cwd(),
     'logs',
-    `${process.env.NODE_ENV}.log`
+    `${process.env.NODE_ENV}.log`,
   );
 
   logger.add(
     new winston.transports.File({
       filename: logFilepath,
-      format: winston.format.simple()
-    })
+      format: winston.format.simple(),
+    }),
   );
 }
 

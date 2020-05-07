@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron';
 
-import logger from './Logger';
+import logger from './logger';
 import * as Actions from '../actions/actionTypes';
 
 export default function checkAndProcessError(data) {
