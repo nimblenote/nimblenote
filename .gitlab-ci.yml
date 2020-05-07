@@ -1,4 +1,5 @@
 stages:
+  - deps
   - test
   - build
   - release
@@ -9,8 +10,9 @@ cache:
   paths:
   - node_modules/
 
-before_script:
-  - yarn
+yarn_install:
+  stage: deps
+  script: yarn
 
 test_lint:
   stage: test
