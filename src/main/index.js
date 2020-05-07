@@ -1,12 +1,10 @@
 import {
-  ipcMain, app, BrowserWindow, nativeTheme,
+  ipcMain, app, BrowserWindow,
 } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
 import Store from 'electron-store';
-
-nativeTheme.themeSource = 'dark'; // waiting on Electron fix in v9 for Linux
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -38,9 +36,7 @@ function createMainWindow() {
 
   if (isDevelopment) {
     window.webContents.openDevTools();
-  }
 
-  if (isDevelopment) {
     window.loadURL(`http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`);
   } else {
     window.loadURL(formatUrl({
@@ -48,6 +44,10 @@ function createMainWindow() {
       protocol: 'file',
       slashes: true,
     }));
+  }
+
+  if (process.platform !== 'darwin') {
+    window.setMenu(null);
   }
 
   window.on('closed', () => {
