@@ -1,10 +1,36 @@
+stages:
+  - test
+  - build
+  - release
+
 image: electronuserland/builder:latest
+
+cache:
+  paths:
+  - node_modules/
 
 before_script:
   - yarn
 
-build:
-  script:
-    - yarn lint
-    - yarn test
-    - yarn dist
+test_lint:
+  stage: test
+  script: yarn lint
+
+test_jest:
+  stage: test
+  script: yarn test
+
+build_dist:
+  stage: build
+  script: yarn dist
+  only:
+    - master
+  # artifacts:
+  #   paths:
+  #     - dist
+
+release_publish:
+  stage: release
+  script: echo release
+  only:
+    - master
