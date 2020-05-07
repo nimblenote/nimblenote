@@ -1,0 +1,23 @@
+@mixin scrollBars($trackColor, $thumbColor) {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &:focus::-webkit-scrollbar, &:hover::-webkit-scrollbar {
+        display: initial;
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: $trackColor;
+        border-width: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: $thumbColor;
+        border-style: solid;
+        border-color: transparent;
+        background-clip: padding-box;
+    }
+}
