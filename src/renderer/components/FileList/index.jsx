@@ -3,13 +3,16 @@ import { render } from 'react-dom';
 
 import styles from './styles.scss';
 
-export default function FileList(props) {
-    let files = '';
-
-    if (props.files) {
-        files = props.files.map((item, i) => {
+export default function FileList({
+  selectedIndex = '',
+  inputref = {},
+  changeEvent = () => {},
+  files = []
+}) {
+    if (files) {
+        files = files.map((item, i) => {
             const selected =
-              props.selectedIndex.toString() === i.toString();
+              selectedIndex.toString() === i.toString();
 
             return (
               <li
@@ -27,9 +30,9 @@ export default function FileList(props) {
         <div className={styles.filelist} tabIndex="0">
           <ul
             role="presentation"
-            value={props.selectedIndex}
-            onClick={props.changeEvent}
-            ref={props.inputref}
+            value={selectedIndex}
+            onClick={changeEvent}
+            ref={inputref}
             size="5"
           >
             { files }
