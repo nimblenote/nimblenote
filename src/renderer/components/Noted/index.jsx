@@ -29,6 +29,7 @@ export default function Noted({
   editorContent = '',
   editorDisabled = true,
   titlebar = true,
+  focusOnSearch = true,
   dispatch = () => {},
 }) {
   const searchInput = useRef(null);
@@ -47,9 +48,7 @@ export default function Noted({
               event.key === 'ArrowUp'
             ));
           }
-        }
-
-        if (event.key === 'Enter') {
+        } else if (event.key === 'Enter') {
           if (searchValue.length > 0) {
             event.preventDefault();
 
@@ -106,6 +105,12 @@ export default function Noted({
 
       searchInput.current.focus();
   }, []);
+
+  useEffect(() => {
+    if (focusOnSearch) {
+      searchInput.current.focus();
+    }
+}, [focusOnSearch]);
 
   useEffect(() => {
       console.log('componentDidUpdate')
