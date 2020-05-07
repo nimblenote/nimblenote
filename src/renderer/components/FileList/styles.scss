@@ -1,3 +1,5 @@
+@import "../../scrollBars";
+
 $bgColor: rgba(0, 43, 54, 1);
 $textColor: rgba(130, 150, 150, 1);
 
@@ -14,9 +16,11 @@ $textColor: rgba(130, 150, 150, 1);
     height: 100%;
     margin: 0;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: overlay;
     padding: 0;
     width: 100%;
+
+    @include scrollBars($textColor, $bgColor);
 
     li {
       font-size: 15px;
