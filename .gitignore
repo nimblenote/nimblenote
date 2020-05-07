@@ -5,3 +5,4 @@ thumbs.db
 .idea/
 logs/
 yarn-error.log
+snapcraft.login

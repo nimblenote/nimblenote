@@ -30,7 +30,14 @@ build_dist:
 
 release_publish:
   stage: release
-  script: yarn release
+  script:
+    - yarn dist
+    - apt-get update -qy
+    - apt-get install -y snapcraft
+    - snapcraft
+    - echo $SNAPCRAFT_LOGIN_FILE | base64 --decode --ignore-garbage > snapcraft.login
+    - snapcraft login --with snapcraft.login
+    - snapcraft push dist/*.snap --release=stable
   when: manual
   only:
     - master
