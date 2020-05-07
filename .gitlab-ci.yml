@@ -27,12 +27,10 @@ build_dist:
   script: yarn dist
   only:
     - master
-  # artifacts:
-  #   paths:
-  #     - dist
 
 release_publish:
   stage: release
-  script: echo release
+  script: yarn release
+  when: manual
   only:
     - master
