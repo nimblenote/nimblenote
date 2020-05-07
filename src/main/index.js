@@ -50,6 +50,12 @@ function createMainWindow() {
     window.setMenu(null);
   }
 
+  window.on('close', () => {
+    const [width, height] = window.getSize();
+    preferences.set('windowWidth', width);
+    preferences.set('windowHeight', height);
+  });
+
   window.on('closed', () => {
     mainWindow = null;
   });
