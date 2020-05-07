@@ -4,6 +4,8 @@ import {
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
+import { autoUpdater } from 'electron-updater';
+
 import Store from 'electron-store';
 
 import logger from '../renderer/lib/logger';
@@ -98,5 +100,7 @@ app.on('activate', () => {
 
 // create main BrowserWindow when electron is ready
 app.on('ready', () => {
+  autoUpdater.checkForUpdatesAndNotify();
+
   mainWindow = createMainWindow();
 });
