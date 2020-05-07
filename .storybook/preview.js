@@ -4,5 +4,10 @@ import { addDecorator } from '@storybook/react';
 import '../src/renderer/app.global.scss';
 
 addDecorator(story => (
-  <div style={{ width: 400, height: 400, position: 'relative' }}>{story()}</div>
+  <div style={{
+    background: '#21252b',
+    width: 400,
+    height: 400,
+    position: 'relative'
+  }}>{story()}</div>
 ));
