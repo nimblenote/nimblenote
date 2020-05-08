@@ -37,7 +37,7 @@ release_publish:
     - master
   when: manual
   script:
-    - ls - l dist/*.snap
+    - ls -l dist/*.snap
     - apt-get update -qy
     - apt-get install -y snapcraft
     - echo $SNAPCRAFT_LOGIN_FILE | base64 --decode --ignore-garbage > snapcraft.login
