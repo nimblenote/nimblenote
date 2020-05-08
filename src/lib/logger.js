@@ -1,6 +1,10 @@
 import winston from 'winston';
 import path from 'path';
 
+import { app } from 'electron';
+
+const logFilePath = path.join(app.getPath('logs'), 'noted.log');
+
 const logger = winston.createLogger({
   level: 'debug',
   transports: [
@@ -10,11 +14,15 @@ const logger = winston.createLogger({
         winston.format.simple(),
       ),
     }),
+    new winston.transports.File({
+      filename: logFilePath,
+      format: winston.format.simple(),
+    }),
   ],
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  const logFilepath = path.join(
+  const devLogFilePath = path.join(
     process.cwd(),
     'logs',
     `${process.env.NODE_ENV}.log`,
@@ -22,7 +30,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   logger.add(
     new winston.transports.File({
-      filename: logFilepath,
+      filename: devLogFilePath,
       format: winston.format.simple(),
     }),
   );

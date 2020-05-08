@@ -8,7 +8,7 @@ import { autoUpdater } from 'electron-updater';
 
 import Store from 'electron-store';
 
-import logger from '../renderer/lib/logger';
+import logger from '../lib/logger';
 
 logger.info('Noted');
 
@@ -32,6 +32,10 @@ ipcMain.on('getPreference', (event, arg) => {
 
 ipcMain.on('showError', (event, arg) => {
   dialog.showErrorBox(arg.title, arg.content);
+});
+
+ipcMain.on('logger', (event, { level, message }) => {
+  logger.log(level, message, { source: 'renderer' });
 });
 
 let mainWindow;

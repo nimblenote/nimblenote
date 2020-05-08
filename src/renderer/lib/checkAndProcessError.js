@@ -1,6 +1,5 @@
 import { ipcRenderer } from 'electron';
 
-import logger from './logger';
 import * as Actions from '../actions/actionTypes';
 
 export default function checkAndProcessError(data) {
@@ -8,7 +7,7 @@ export default function checkAndProcessError(data) {
     return data;
   }
 
-  logger.error(`showError: ${data.title}: ${data.message}`);
+  ipcRenderer.send('logger', { level: 'error', message: `showError: ${data.title}: ${data.message}` });
 
   ipcRenderer.send('showError', { title: data.title, content: data.message });
 
