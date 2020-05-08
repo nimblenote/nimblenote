@@ -2,6 +2,7 @@
   "name": "noted",
   "productName": "Noted",
   "description": "Your notes, powered by the keyboard",
+  "homepage": "https://notedapp.org",
   "author": {
     "name": "David Winter",
     "email": "i@djw.me",
