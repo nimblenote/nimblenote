@@ -5,6 +5,8 @@ import styles from './styles.scss';
 
 export default function TitleBar() {
     return (
-        <div className={styles.titlebar} />
+        <div className={styles.titlebar}>
+            <span>Noted</span>
+        </div>
     )
 }
