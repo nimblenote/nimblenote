@@ -1,5 +1,5 @@
 import {
-  ipcMain, app, BrowserWindow, dialog,
+  ipcMain, app, BrowserWindow, dialog, Menu,
 } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
@@ -7,6 +7,8 @@ import { format as formatUrl } from 'url';
 import { autoUpdater } from 'electron-updater';
 
 import Store from 'electron-store';
+
+import menu from './menu';
 
 import logger from '../lib/logger';
 
@@ -86,6 +88,8 @@ function createMainWindow() {
 
   return window;
 }
+
+Menu.setApplicationMenu(menu);
 
 // quit application when all windows are closed
 app.on('window-all-closed', () => {
