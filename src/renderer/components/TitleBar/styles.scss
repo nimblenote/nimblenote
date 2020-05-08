@@ -1,6 +1,14 @@
 .titlebar {
     -webkit-app-region: drag;
-    background: #323756;
+    background: #323031;
     flex: none;
     height: 22px;
+    text-align: center;
+
+    span {
+        color: #cccccc;
+        font-family: 'Fira Mono';
+        font-size: 0.8em;
+        line-height: 22px;
+    }
 }
