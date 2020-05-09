@@ -45,7 +45,8 @@ build_dist:
 release_publish:
   stage: release
   rules:
-    - when: manual
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: manual
   script:
     - ls -l dist/*.snap
     - apt-get update -qy
