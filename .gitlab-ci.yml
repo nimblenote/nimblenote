@@ -11,29 +11,29 @@ workflow:
     - if: $CI_MERGE_REQUEST_ID
     - if: $CI_COMMIT_BRANCH == "master"
 
-image: electronuserland/builder:latest
+default:
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+    - node_modules/
+    policy: pull
 
-cache:
-  key:
-    files:
-      - yarn.lock
-  paths:
-  - node_modules/
+image: electronuserland/builder:latest
 
 yarn_install:
   stage: deps
+  cache:
+    policy: push
   script: yarn
 
 test_lint:
   stage: test
-  cache:
-    policy: pull
   script: yarn lint
 
 test_jest:
   stage: test
-  cache:
-    policy: pull
   script: yarn test
 
 build_dist:
@@ -41,8 +41,6 @@ build_dist:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: on_success
-  cache:
-    policy: pull
   script: yarn dist
   artifacts:
     paths:
@@ -53,8 +51,6 @@ release_publish:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: manual
-  cache:
-    policy: pull
   script:
     - ls -l dist/*.snap
     - apt-get update -qy
