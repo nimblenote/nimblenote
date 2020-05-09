@@ -1,9 +1,9 @@
 import winston from 'winston';
 import path from 'path';
 
-import { app } from 'electron';
+import { logPath } from './appPaths';
 
-const logFilePath = path.join(app.getPath('logs'), 'noted.log');
+const logFilePath = path.join(logPath, 'noted.log');
 
 const logger = winston.createLogger({
   level: 'debug',
