@@ -4,31 +4,7 @@ import {
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
-const snapVersionedPath = /\/snap\/noted\/[0-9]+\//;
-
-if (process.platform === 'linux') {
-  console.log('Linux detected');
-
-  const defaultUserDataPath = app.getPath('userData');
-  console.log('Default userData path', defaultUserDataPath);
-
-  const matchedSnapPath = defaultUserDataPath.match(snapVersionedPath);
-  console.log('Matched snap path', matchedSnapPath);
-
-  if (matchedSnapPath) {
-    console.log('Found that the numerical versioned snap path is being used for userData');
-
-    const userDataPathwithCurrent = defaultUserDataPath.replace(matchedSnapPath[0], '/snap/noted/current/');
-    console.log('userData path using the current symlink rather than numbered', userDataPathwithCurrent);
-
-    app.setPath('userData', userDataPathwithCurrent);
-    console.log('Set/overridden default userData app path');
-
-    console.log('New userData path from app.getPath(\'userData\')', app.getPath('userData'));
-  } else {
-    console.log('Incorrect snap path not detected. All ok.');
-  }
-}
+import { userDataPath } from '../lib/appPaths';
 
 import { autoUpdater } from 'electron-updater'; // eslint-disable-line import/first
 
@@ -45,23 +21,15 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 const preferences = new Store({
   name: 'noted',
   defaults: {
-    notesStoragePath: path.join(app.getPath('userData'), 'NotedNotes'),
+    notesStoragePath: path.join(userDataPath, 'NotedNotes'),
     windowWidth: 400,
     windowHeight: 600,
   },
 });
 
-if (preferences.get('notesStoragePath').match(snapVersionedPath)) {
-  logger.debug('Preferences notesStoragePath detected with numbered path');
-  logger.debug('notesStoragePath', preferences.get('notesStoragePath'));
-
-  preferences.set('notesStoragePath', path.join(app.getPath('userData'), 'NotedNotes'));
-  logger.debug('Preferences updated to', path.join(app.getPath('userData'), 'NotedNotes'));
-
-  logger.debug('Direct from preferences', preferences.get('notesStoragePath'));
-} else {
-  logger.debug('Incorrect preferences path not detected. All ok');
-}
+logger.debug('userData ' + app.getPath('userData'));
+logger.debug('SNAP_USER_COMMON ' + process.env.SNAP_USER_COMMON);
+logger.debug('SNAP_USER_DATA ' + process.env.SNAP_USER_DATA);
 
 logger.debug('Preferences:', preferences.store);
 logger.debug('Preferences path:', preferences);
