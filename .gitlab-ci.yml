@@ -14,23 +14,26 @@ workflow:
 image: electronuserland/builder:latest
 
 cache:
+  key:
+    files:
+      - yarn.lock
   paths:
   - node_modules/
 
 yarn_install:
   stage: deps
-  rules:
-    - changes:
-      - yarn.lock
-      when: on_success
   script: yarn
 
 test_lint:
   stage: test
+  cache:
+    policy: pull
   script: yarn lint
 
 test_jest:
   stage: test
+  cache:
+    policy: pull
   script: yarn test
 
 build_dist:
@@ -38,6 +41,8 @@ build_dist:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: on_success
+  cache:
+    policy: pull
   script: yarn dist
   artifacts:
     paths:
@@ -48,6 +53,8 @@ release_publish:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: manual
+  cache:
+    policy: pull
   script:
     - ls -l dist/*.snap
     - apt-get update -qy
