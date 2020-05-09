@@ -25,7 +25,7 @@ image: electronuserland/builder:latest
 yarn_install:
   stage: deps
   cache:
-    policy: push
+    policy: pull-push
   script: yarn
 
 test_lint:
