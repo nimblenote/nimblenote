@@ -23,6 +23,7 @@ default:
 image: electronuserland/builder:latest
 
 yarn_install:
+  extends: default
   stage: deps
   cache:
     policy: pull-push
