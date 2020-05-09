@@ -4,13 +4,39 @@ import {
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
-import { autoUpdater } from 'electron-updater';
+const snapVersionedPath = /\/snap\/noted\/[0-9]+\//;
 
-import Store from 'electron-store';
+if (process.platform === 'linux') {
+  console.log('Linux detected');
 
-import menu from './menu';
+  const defaultUserDataPath = app.getPath('userData');
+  console.log('Default userData path', defaultUserDataPath);
 
-import logger from '../lib/logger';
+  const matchedSnapPath = defaultUserDataPath.match(snapVersionedPath);
+  console.log('Matched snap path', matchedSnapPath);
+
+  if (matchedSnapPath) {
+    console.log('Found that the numerical versioned snap path is being used for userData');
+
+    const userDataPathwithCurrent = defaultUserDataPath.replace(matchedSnapPath[0], '/snap/noted/current/');
+    console.log('userData path using the current symlink rather than numbered', userDataPathwithCurrent);
+
+    app.setPath('userData', userDataPathwithCurrent);
+    console.log('Set/overridden default userData app path');
+
+    console.log('New userData path from app.getPath(\'userData\')', app.getPath('userData'));
+  } else {
+    console.log('Incorrect snap path not detected. All ok.');
+  }
+}
+
+import { autoUpdater } from 'electron-updater'; // eslint-disable-line import/first
+
+import Store from 'electron-store'; // eslint-disable-line import/first
+
+import menu from './menu'; // eslint-disable-line import/first
+
+import logger from '../lib/logger'; // eslint-disable-line import/first
 
 logger.info('Noted');
 
@@ -24,6 +50,18 @@ const preferences = new Store({
     windowHeight: 600,
   },
 });
+
+if (preferences.get('notesStoragePath').match(snapVersionedPath)) {
+  logger.debug('Preferences notesStoragePath detected with numbered path');
+  logger.debug('notesStoragePath', preferences.get('notesStoragePath'));
+
+  preferences.set('notesStoragePath', path.join(app.getPath('userData'), 'NotedNotes'));
+  logger.debug('Preferences updated to', path.join(app.getPath('userData'), 'NotedNotes'));
+
+  logger.debug('Direct from preferences', preferences.get('notesStoragePath'));
+} else {
+  logger.debug('Incorrect preferences path not detected. All ok');
+}
 
 logger.debug('Preferences:', preferences.store);
 logger.debug('Preferences path:', preferences);
