@@ -4,7 +4,7 @@ import {
 import * as path from 'path';
 import { format as formatUrl } from 'url';
 
-import { userDataPath } from '../lib/appPaths';
+import { userDataPath } from '../lib/appPaths'; // eslint-disable-line import/order
 
 import { autoUpdater } from 'electron-updater'; // eslint-disable-line import/first
 
@@ -27,9 +27,9 @@ const preferences = new Store({
   },
 });
 
-logger.debug('userData ' + app.getPath('userData'));
-logger.debug('SNAP_USER_COMMON ' + process.env.SNAP_USER_COMMON);
-logger.debug('SNAP_USER_DATA ' + process.env.SNAP_USER_DATA);
+logger.debug(`userData ${app.getPath('userData')}`);
+logger.debug(`SNAP_USER_COMMON ${process.env.SNAP_USER_COMMON}`);
+logger.debug(`SNAP_USER_DATA ${process.env.SNAP_USER_DATA}`);
 
 logger.debug('Preferences:', preferences.store);
 logger.debug('Preferences path:', preferences);

@@ -1,7 +1,7 @@
 import winston from 'winston';
 import path from 'path';
 
-import { logPath } from '../lib/appPaths';
+import { logPath } from './appPaths';
 
 const logFilePath = path.join(logPath, 'noted.log');
 
