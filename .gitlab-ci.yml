@@ -18,6 +18,10 @@ cache:
 
 yarn_install:
   stage: deps
+  rules:
+    - changes:
+      - yarn.lock
+    - when: on_success
   script: yarn
 
 test_lint:
@@ -30,8 +34,9 @@ test_jest:
 
 build_dist:
   stage: build
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: on_success
   script: yarn dist
   artifacts:
     paths:
@@ -39,9 +44,8 @@ build_dist:
 
 release_publish:
   stage: release
-  only:
-    - master
-  when: manual
+  rules:
+    - when: manual
   script:
     - ls -l dist/*.snap
     - apt-get update -qy
