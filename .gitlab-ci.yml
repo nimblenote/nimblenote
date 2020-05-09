@@ -22,7 +22,7 @@ yarn_install:
   rules:
     - changes:
       - yarn.lock
-    - when: on_success
+      when: on_success
   script: yarn
 
 test_lint:
