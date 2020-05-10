@@ -114,7 +114,9 @@ app.on('activate', () => {
 
 // create main BrowserWindow when electron is ready
 app.on('ready', () => {
-  autoUpdater.checkForUpdatesAndNotify();
+  if (isDevelopment === false) {
+    autoUpdater.checkForUpdatesAndNotify();
+  }
 
   mainWindow = createMainWindow();
 });

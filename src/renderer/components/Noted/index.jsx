@@ -31,6 +31,8 @@ export default function Noted({
   titlebar = true,
   focusOnSearch = true,
   dispatch = () => {},
+  onInit = () => {},
+  onReady = () => {},
 }) {
   const searchInput = useRef(null);
   const fileList = useRef(null);
@@ -99,11 +101,15 @@ export default function Noted({
   }
 
   useEffect(() => {
+      onInit();
+
       console.log('componentDidMount')
       dispatch(loadFiles());
       dispatch(showTitlebar());
 
       searchInput.current.focus();
+
+      onReady();
   }, []);
 
   useEffect(() => {
