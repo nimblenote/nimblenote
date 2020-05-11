@@ -6,13 +6,21 @@ import { format as formatUrl } from 'url';
 
 import { userDataPath } from '../lib/appPaths'; // eslint-disable-line import/order
 
-import { autoUpdater } from 'electron-updater'; // eslint-disable-line import/first
-
-import Store from 'electron-store'; // eslint-disable-line import/first
+import Store from 'electron-store'; // eslint-disable-line import/order
 
 import menu from './menu'; // eslint-disable-line import/first
 
 import logger from '../lib/logger'; // eslint-disable-line import/first
+
+require('update-electron-app')({
+  logger: {
+    log: (...args) => {
+      logger.info(args.join(' '));
+    },
+  },
+  repo: 'davidwinter/noted',
+  updateInterval: '5 minutes',
+});
 
 logger.info('Noted');
 
@@ -114,9 +122,5 @@ app.on('activate', () => {
 
 // create main BrowserWindow when electron is ready
 app.on('ready', () => {
-  if (isDevelopment === false) {
-    autoUpdater.checkForUpdatesAndNotify();
-  }
-
   mainWindow = createMainWindow();
 });
