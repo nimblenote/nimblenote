@@ -13,6 +13,12 @@ yarn
 yarn dev
 ```
 
+Uses commitizen for commit message standards. To commit, use the command:
+
+```
+yarn cm
+```
+
 ## Releasing
 
 ### macOS via GitHub releases and `electron-updater`
