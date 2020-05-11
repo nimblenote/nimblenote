@@ -40,7 +40,7 @@
   "build": {
     "appId": "dev.davidwinter.noted",
     "mac": {
-      "target": "zip"
+      "target": "default"
     },
     "linux": {
       "target": "snap",
