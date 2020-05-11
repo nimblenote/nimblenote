@@ -37,7 +37,7 @@ test_jest:
   stage: test
   script: yarn test
 
-build_dist:
+build:linux:
   stage: build
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
@@ -47,7 +47,20 @@ build_dist:
     paths:
       - dist/*.snap
 
-release_publish:
+build:mac:
+  stage: build
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: on_success
+  tags:
+    - macos
+  script: yarn dist
+  artifacts:
+    paths:
+      - dist/*.zip
+      - dist/*.dmg
+
+release:linux:
   stage: release
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
