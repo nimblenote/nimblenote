@@ -54,7 +54,9 @@ build:mac:
       when: on_success
   tags:
     - macos
-  script: yarn dist
+  script:
+    - yarn # as cached packages will have been from Linux runner
+    - yarn dist
   artifacts:
     paths:
       - dist/*.zip
