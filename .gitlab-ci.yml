@@ -87,7 +87,8 @@ release:mac:
   script:
     - ls -l dist/*.zip
     - ls -l dist/*.dmg
-    - snap install jq
+    - apt-get update -qy
+    - apt-get install -y jq bzip2 curl
     - curl 'https://github.com/github-release/github-release/releases/download/v0.8.1/linux-amd64-github-release.bz2' -L -o github-release.bz2
     - bzip2 -d github-release.bz2
     - chmod +x github-release
