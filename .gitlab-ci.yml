@@ -62,23 +62,19 @@ build:mac:
       - dist/*.zip
       - dist/*.dmg
 
-release:linux:
+release:snapstore:
   stage: release
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: manual
-  dependencies:
-    - build:linux
   script:
-    - bin/release-linux.sh
+    - bin/release-snapstore.sh
 
-release:mac:
+release:github:
   stage: release
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: manual
-  dependencies:
-    - build:mac
   script:
-    - bin/release-mac.sh
+    - bin/release-github.sh
 
