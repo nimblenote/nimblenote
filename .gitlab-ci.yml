@@ -87,3 +87,14 @@ release:mac:
   script:
     - ls -l dist/*.zip
     - ls -l dist/*.dmg
+    - snap install jq
+    - curl 'https://github.com/github-release/github-release/releases/download/v0.8.1/linux-amd64-github-release.bz2' -L -o github-release.bz2
+    - bzip2 -d github-release.bz2
+    - chmod +x github-release
+    - ./github-release --version
+    - NOTED_VERSION="v$(cat package.json | jq '.version' --raw-output)"
+    - ./github-release release --user davidwinter --repo noted --tag "${NOTED_VERSION}" --name "${NOTED_VERSION}" --description "${NOTED_VERSION}" --draft
+    - ./github-release upload --user davidwinter --repo noted --tag "${NOTED_VERSION}" --file dist/*.zip --name "Noted-$(cat package.json | jq '.version' --raw-output)-mac.zip"
+    - ./github-release upload --user davidwinter --repo noted --tag "${NOTED_VERSION}" --file dist/*.dmg --name "Noted-$(cat package.json | jq '.version' --raw-output)-mac.dmg"
+    - ./github-release edit --user davidwinter --repo noted --tag "${NOTED_VERSION}"
+
