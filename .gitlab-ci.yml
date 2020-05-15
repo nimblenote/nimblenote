@@ -80,7 +80,7 @@ release_version:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: manual
   script:
-    - git restore package.json
+    - git checkout -- package.json
     - yarn exec standard-version
     - git push
   artifacts:
