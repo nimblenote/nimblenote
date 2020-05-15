@@ -1,7 +1,9 @@
 stages:
   - deps
   - test
+  - build_version
   - build
+  - release_version
   - release
 
 workflow:
@@ -37,6 +39,16 @@ test_jest:
   stage: test
   script: yarn test
 
+build_version:
+  stage: build_version
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: on_success
+  script: yarn exec standard-version
+  artifacts:
+    paths:
+      - package.json
+
 build:linux:
   stage: build
   rules:
@@ -62,13 +74,27 @@ build:mac:
       - dist/*.zip
       - dist/*.dmg
 
+release_version:
+  stage: release_version
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: manual
+  script:
+    - git restore package.json
+    - yarn exec standard-version
+    - git push
+  artifacts:
+    paths:
+      - package.json
+
 release:snapstore:
   stage: release
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: manual
   script:
-    - bin/release-snapstore.sh
+    - echo "release to snapstore placeholder"
+    # - bin/release-snapstore.sh
 
 release:github:
   stage: release
@@ -76,5 +102,5 @@ release:github:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: manual
   script:
-    - bin/release-github.sh
-
+    - echo "release go github placeholder"
+    # - bin/release-github.sh

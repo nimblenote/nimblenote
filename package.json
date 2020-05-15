@@ -38,6 +38,13 @@
       "path": "cz-conventional-changelog"
     }
   },
+  "standard-version": {
+    "skip": {
+      "changelog": true,
+      "commit": true,
+      "tag": true
+    }
+  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
@@ -92,6 +99,7 @@
     "jest": "^25.5.4",
     "node-sass": "^4.14.0",
     "sass-loader": "^8.0.2",
+    "standard-version": "^8.0.0",
     "url-loader": "^4.1.0",
     "webpack": "~4.42.1"
   }
