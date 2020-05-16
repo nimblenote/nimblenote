@@ -80,6 +80,7 @@ release_version:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: manual
   script:
+    - bin/setup-git.sh
     - git checkout -- package.json
     - yarn exec standard-version
     - git push origin HEAD:master
