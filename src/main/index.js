@@ -11,6 +11,7 @@ import Store from 'electron-store'; // eslint-disable-line import/order
 import logger from '../lib/logger'; // eslint-disable-line import/first
 
 import MenuBar from './menu-bar';
+import Preferences from './preferences';
 
 require('update-electron-app')({
   logger: {
@@ -26,14 +27,7 @@ logger.info('Noted');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-const preferences = new Store({
-  name: 'noted',
-  defaults: {
-    notesStoragePath: path.join(userDataPath, 'NotedNotes'),
-    windowWidth: 400,
-    windowHeight: 600,
-  },
-});
+const preferences = new Preferences({StoreClass: Store, userDataPath});
 
 logger.debug(`userData ${app.getPath('userData')}`);
 logger.debug(`SNAP_USER_COMMON ${process.env.SNAP_USER_COMMON}`);
