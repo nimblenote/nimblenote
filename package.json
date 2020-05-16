@@ -16,13 +16,11 @@
   },
   "scripts": {
     "dev": "electron-webpack dev",
-    "compile": "electron-webpack",
-    "dist": "yarn compile && electron-builder --publish never",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "release": "yarn compile && electron-builder build --publish always",
-    "test": "jest",
-    "lint": "eslint src",
     "storybook": "start-storybook",
+    "lint": "eslint src",
+    "test": "jest",
+    "build": "yarn compile && electron-builder --publish never",
+    "release": "standard-version",
     "cm": "git-cz"
   },
   "jest": {
@@ -36,13 +34,6 @@
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
-    }
-  },
-  "standard-version": {
-    "skip": {
-      "changelog": true,
-      "commit": true,
-      "tag": true
     }
   },
   "husky": {
