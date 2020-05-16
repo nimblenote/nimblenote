@@ -7,46 +7,23 @@ import { format as formatUrl } from 'url';
 import { userDataPath } from '../lib/appPaths'; // eslint-disable-line import/order
 
 import Store from 'electron-store'; // eslint-disable-line import/order
+import updateMacOs from './update-macos';
 
 import logger from '../lib/logger'; // eslint-disable-line import/first
 
 import MenuBar from './menu-bar';
 import Preferences from './preferences';
-
-require('update-electron-app')({
-  logger: {
-    log: (...args) => {
-      logger.info(args.join(' '));
-    },
-  },
-  repo: 'davidwinter/noted',
-  updateInterval: '5 minutes',
-});
-
-logger.info('Noted');
+import initMainListeners from './main-listeners';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
+logger.info('Noted');
+
+updateMacOs(logger);
+
 const preferences = new Preferences({StoreClass: Store, userDataPath});
 
-logger.debug(`userData ${app.getPath('userData')}`);
-logger.debug(`SNAP_USER_COMMON ${process.env.SNAP_USER_COMMON}`);
-logger.debug(`SNAP_USER_DATA ${process.env.SNAP_USER_DATA}`);
-
-logger.debug('Preferences:', preferences.store);
-logger.debug('Preferences path:', preferences);
-
-ipcMain.on('getPreference', (event, arg) => {
-  event.returnValue = preferences.get(arg); // eslint-disable-line no-param-reassign
-});
-
-ipcMain.on('showError', (event, arg) => {
-  dialog.showErrorBox(arg.title, arg.content);
-});
-
-ipcMain.on('logger', (event, { level, message }) => {
-  logger.log(level, message, { source: 'renderer' });
-});
+initMainListeners(ipcMain, preferences, dialog, logger);
 
 let mainWindow;
 
