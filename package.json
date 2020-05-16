@@ -19,7 +19,7 @@
     "storybook": "start-storybook",
     "lint": "eslint src",
     "test": "jest",
-    "build": "yarn compile && electron-builder --publish never",
+    "build": "electron-webpack && electron-builder --publish never",
     "release": "standard-version",
     "cm": "git-cz"
   },
