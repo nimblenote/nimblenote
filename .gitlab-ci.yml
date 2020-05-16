@@ -82,7 +82,7 @@ release_version:
   script:
     - git checkout -- package.json
     - yarn exec standard-version
-    - git push
+    - git push origin HEAD:master
   artifacts:
     paths:
       - package.json
