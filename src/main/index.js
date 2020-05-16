@@ -1,8 +1,8 @@
 import {
-  ipcMain, app, BrowserWindow, dialog, Menu, shell,
+	ipcMain, app, BrowserWindow, dialog, Menu, shell,
 } from 'electron';
 
-import { userDataPath } from '../lib/appPaths'; // eslint-disable-line import/order
+import { userDataPath } from '../lib/app-paths'; // eslint-disable-line import/order
 
 import Store from 'electron-store'; // eslint-disable-line import/order
 import updateMacOs from './update-macos';
@@ -25,20 +25,19 @@ const preferences = new Preferences({StoreClass: Store, userDataPath});
 initMainListeners(ipcMain, preferences, dialog, logger);
 
 const menuBar = new MenuBar({
-  isMac: process.platform === 'darwin',
-  isDevelopment,
-  appName: app.getName(),
-  shell
+	isMac: process.platform === 'darwin',
+	isDevelopment,
+	appName: app.getName(),
+	shell
 });
 
 Menu.setApplicationMenu(
-  Menu.buildFromTemplate(menuBar.getTemplate())
-);
+	Menu.buildFromTemplate(menuBar.getTemplate()));
 
 new AppWindow({
-  BrowserWindowClass: BrowserWindow,
-  AppClass: app,
-  preferences,
-  isDevelopment,
-  process
+	BrowserWindowClass: BrowserWindow,
+	AppClass: app,
+	preferences,
+	isDevelopment,
+	process
 });

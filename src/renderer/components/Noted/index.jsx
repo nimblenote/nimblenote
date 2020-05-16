@@ -9,167 +9,164 @@ import FileList from '../FileList';
 import Editor from '../Editor';
 
 export default function Noted({
-  loadFiles = () => {},
-  createFile = () => {},
-  selectFile = () => {},
-  changeSelectedFile = () => {},
-  updateFile = () => {},
-  searchQuery = () => {},
-  resetToInitialState = () => {},
-  showHelp = () => {},
-  showTitlebar = () => {},
-  newlyCreatedFile = false,
-  fileIndex = '',
-  allFiles = [],
-  files = [],
-  searchValue = '',
-  query = '',
-  startSelection = false,
-  endSelection = false,
-  editorContent = '',
-  editorDisabled = true,
-  titlebar = true,
-  focusOnSearch = true,
-  dispatch = () => {},
-  onInit = () => {},
-  onReady = () => {},
+	loadFiles = () => {},
+	createFile = () => {},
+	selectFile = () => {},
+	changeSelectedFile = () => {},
+	updateFile = () => {},
+	searchQuery = () => {},
+	resetToInitialState = () => {},
+	showHelp = () => {},
+	showTitlebar = () => {},
+	newlyCreatedFile = false,
+	fileIndex = '',
+	allFiles = [],
+	files = [],
+	searchValue = '',
+	query = '',
+	startSelection = false,
+	endSelection = false,
+	editorContent = '',
+	editorDisabled = true,
+	titlebar = true,
+	focusOnSearch = true,
+	dispatch = () => {},
+	onInit = () => {},
+	onReady = () => {},
 }) {
-  const searchInput = useRef(null);
-  const fileList = useRef(null);
-  const editorInput = useRef(null);
+	const searchInput = useRef(null);
+	const fileList = useRef(null);
+	const editorInput = useRef(null);
 
-  const handleKeyboard = (event) => {
-    if (['INPUT', 'DIV'].includes(event.target.tagName)) {
-        if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
-          event.preventDefault();
+	const handleKeyboard = (event) => {
+		if (['INPUT', 'DIV'].includes(event.target.tagName)) {
+			if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
+				event.preventDefault();
 
-          if (files.length) {
-            dispatch(changeSelectedFile(
-              files,
-              fileIndex,
-              event.key === 'ArrowUp'
-            ));
-          }
-        } else if (event.key === 'Enter') {
-          if (searchValue.length > 0) {
-            event.preventDefault();
+				if (files.length) {
+					dispatch(changeSelectedFile(
+						files,
+						fileIndex,
+						event.key === 'ArrowUp'
+					));
+				}
+			} else if (event.key === 'Enter') {
+				if (searchValue.length > 0) {
+					event.preventDefault();
 
-            if (event.target.tagName === 'INPUT') {
-              if (fileIndex === '') {
-                dispatch(createFile(searchValue));
-              } else {
-                dispatch(selectFile(files, fileIndex));
-                editorInput.current.focus();
-              }
-            }
-          }
-        }
-      }
+					if (event.target.tagName === 'INPUT') {
+						if (fileIndex === '') {
+							dispatch(createFile(searchValue));
+						} else {
+							dispatch(selectFile(files, fileIndex));
+							editorInput.current.focus();
+						}
+					}
+				}
+			}
+		}
 
-      if (event.key === 'Escape') {
-        searchInput.current.focus();
+		if (event.key === 'Escape') {
+			searchInput.current.focus();
 
-        dispatch(resetToInitialState());
-      }
-  }
+			dispatch(resetToInitialState());
+		}
+	}
 
-  const handleSearch = (event) => {
-      if (event.target.value === '?') {
-          dispatch(showHelp());
+	const handleSearch = (event) => {
+		if (event.target.value === '?') {
+			dispatch(showHelp());
 
-          return true;
-        }
+			return true;
+		}
 
-        dispatch(searchQuery(
-          allFiles,
-          event.target.value,
-          query
-        ));
-  }
+		dispatch(searchQuery(
+			allFiles,
+			event.target.value,
+			query));
+	}
 
-  const handleFileList = (event) => {
-      if (files.length) {
-          dispatch(selectFile(
-            files,
-            event.target.getAttribute('value') * 1
-          ));
-        }
-  }
+	const handleFileList = (event) => {
+		if (files.length) {
+			dispatch(selectFile(
+				files,
+				event.target.getAttribute('value') * 1));
+		}
+	}
 
-  const handleEditor = (event) => {
-      dispatch(updateFile(searchValue, event.target.value));
-  }
+	const handleEditor = (event) => {
+		dispatch(updateFile(searchValue, event.target.value));
+	}
 
-  useEffect(() => {
-      onInit();
+	useEffect(() => {
+		onInit();
 
-      console.log('componentDidMount')
-      dispatch(loadFiles());
-      dispatch(showTitlebar());
+		console.log('componentDidMount')
+		dispatch(loadFiles());
+		dispatch(showTitlebar());
 
-      searchInput.current.focus();
+		searchInput.current.focus();
 
-      onReady();
-  }, []);
+		onReady();
+	}, []);
 
-  useEffect(() => {
-    if (focusOnSearch) {
-      searchInput.current.focus();
-    }
-}, [focusOnSearch]);
+	useEffect(() => {
+		if (focusOnSearch) {
+			searchInput.current.focus();
+		}
+	}, [focusOnSearch]);
 
-  useEffect(() => {
-      console.log('componentDidUpdate')
-      console.log('newlyCreatedFile')
-      editorInput.current.focus();
-  }, [newlyCreatedFile]);
+	useEffect(() => {
+		console.log('componentDidUpdate')
+		console.log('newlyCreatedFile')
+		editorInput.current.focus();
+	}, [newlyCreatedFile]);
 
-  useEffect(() => {
-      console.log('componentDidUpdate')
-      console.log('fileIndex')
-      if (fileIndex) {
-          const fileDom = fileList.current.childNodes[fileIndex];
-          fileDom.scrollIntoViewIfNeeded();
-      }
-  }, [fileIndex]);
+	useEffect(() => {
+		console.log('componentDidUpdate')
+		console.log('fileIndex')
+		if (fileIndex) {
+			const fileDom = fileList.current.childNodes[fileIndex];
+			fileDom.scrollIntoViewIfNeeded();
+		}
+	}, [fileIndex]);
 
-  useEffect(() => {
-      console.log('componentDidUpdate')
-      console.log('startSelection')
+	useEffect(() => {
+		console.log('componentDidUpdate')
+		console.log('startSelection')
 
-      if (startSelection !== false) {
-          searchInput.current.setSelectionRange(
-              startSelection,
-              endSelection
-            );
-      }
-  }, [startSelection]);
+		if (startSelection !== false) {
+			searchInput.current.setSelectionRange(
+				startSelection,
+				endSelection);
+		}
+	}, [startSelection]);
 
-  return (
-      <>
-          <div
-              className={styles.container}
-              onKeyDown={e => handleKeyboard(e)}
-          >
-              {titlebar ? <TitleBar /> : ''}
-              <SearchInput
-                  query={searchValue}
-                  changeEvent={e => handleSearch(e)}
-                  inputref={searchInput}
-              />
-              <FileList
-                  changeEvent={e => handleFileList(e)}
-                  files={files}
-                  selectedIndex={fileIndex}
-                  inputref={fileList}
-              />
-              <Editor
-                  changeEvent={e => handleEditor(e)}
-                  inputref={editorInput}
-                  content={editorContent}
-                  disabled={editorDisabled}
-              />
-          </div>
-      </>
-  )
+	return (
+		<>
+			<div
+				className={styles.container}
+				onKeyDown={e => handleKeyboard(e)}
+			>
+				{titlebar ? <TitleBar /> : ''}
+				<SearchInput
+					query={searchValue}
+					changeEvent={e => handleSearch(e)}
+					inputref={searchInput}
+				/>
+				<FileList
+					changeEvent={e => handleFileList(e)}
+					files={files}
+					selectedIndex={fileIndex}
+					inputref={fileList}
+				/>
+				<Editor
+					changeEvent={e => handleEditor(e)}
+					inputref={editorInput}
+					content={editorContent}
+					disabled={editorDisabled}
+				/>
+			</div>
+		</>
+	);
 }
