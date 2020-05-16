@@ -1,5 +1,5 @@
 import {
-  ipcMain, app, BrowserWindow, dialog, Menu,
+  ipcMain, app, BrowserWindow, dialog, Menu, shell,
 } from 'electron';
 import * as path from 'path';
 import { format as formatUrl } from 'url';
@@ -8,9 +8,9 @@ import { userDataPath } from '../lib/appPaths'; // eslint-disable-line import/or
 
 import Store from 'electron-store'; // eslint-disable-line import/order
 
-import menu from './menu'; // eslint-disable-line import/first
-
 import logger from '../lib/logger'; // eslint-disable-line import/first
+
+import MenuBar from './menu-bar';
 
 require('update-electron-app')({
   logger: {
@@ -103,7 +103,16 @@ function createMainWindow() {
   return window;
 }
 
-Menu.setApplicationMenu(menu);
+const menuBar = new MenuBar({
+  isMac: process.platform === 'darwin',
+  isDevelopment,
+  appName: app.getName(),
+  shell
+});
+
+Menu.setApplicationMenu(
+  Menu.buildFromTemplate(menuBar.getTemplate())
+);
 
 // quit application when all windows are closed
 app.on('window-all-closed', () => {
