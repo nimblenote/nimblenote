@@ -2,10 +2,10 @@ import fs from 'fs';
 
 import { ipcRenderer } from 'electron';
 
-import checkAndProcessError from '../lib/checkAndProcessError';
+import checkAndProcessError from '../lib/check-and-process-error';
 
-import NotesHandler from '../lib/NotesHandler';
-import NotedActions from './NotedActions';
+import NotesHandler from '../lib/notes-handler';
+import NotedActions from './noted-actions';
 
 const notesStoragePath = ipcRenderer.sendSync(
 	'getPreference',

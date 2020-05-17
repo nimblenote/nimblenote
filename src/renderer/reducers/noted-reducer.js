@@ -1,4 +1,4 @@
-import * as Actions from '../actions/actionTypes';
+import * as Actions from '../actions/action-types';
 
 export const initialState = {
 	titlebar: true,

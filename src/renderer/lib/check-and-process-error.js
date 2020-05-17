@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron';
 
-import * as Actions from '../actions/actionTypes';
+import * as Actions from '../actions/action-types';
 
 export default function checkAndProcessError(data) {
 	if (data.type !== Actions.ERROR) {

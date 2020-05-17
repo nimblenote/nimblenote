@@ -3,9 +3,9 @@ import path from 'path';
 
 import { ipcRenderer } from 'electron';
 
-import logger from './rendererLogger';
+import logger from './renderer-logger';
 
-import NotesHandler from './NotesHandler';
+import NotesHandler from './notes-handler';
 
 const notesStoragePath = ipcRenderer.sendSync(
 	'getPreference',

@@ -3,12 +3,12 @@ import { render } from 'react-dom';
 
 import Mousetrap from 'mousetrap';
 
-import logger from '../lib/rendererLogger';
+import logger from '../lib/renderer-logger';
 
-import * as ActionCreators from '../actions/actionCreators';
-import * as legacySnapMigration from '../lib/legacySnapMigration';
+import * as ActionCreators from '../actions/action-creators';
+import * as legacySnapMigration from '../lib/legacy-snap-migration';
 
-import { initialState, notedReducer } from '../reducers/notedReducer';
+import { initialState, notedReducer } from '../reducers/noted-reducer';
 
 import Noted from '../components/Noted';
 

@@ -1,6 +1,6 @@
 import fuzzy from 'fuzzy';
 
-import * as Actions from './actionTypes';
+import * as Actions from './action-types';
 
 export default class NotedActions {
 	constructor(notesHandler) {
@@ -240,11 +240,11 @@ export default class NotedActions {
 		static _helpText() {
 			return `Hello! And welcome to Noted.
 
-			The top section of the screen is your search input. You use this to search for files, or to name and create a new file. You can access it anytime by pressing the \`Esc\` key on your keyboard.
+The top section of the screen is your search input. You use this to search for files, or to name and create a new file. You can access it anytime by pressing the \`Esc\` key on your keyboard.
 
-			The middle section of the app is your list of notes or search results. You can navigate this by using the \`Up\` or \`Down\` arrows when the search input is in focus.
+The middle section of the app is your list of notes or search results. You can navigate this by using the \`Up\` or \`Down\` arrows when the search input is in focus.
 
-			The bottom section of the app is this section, the editor. This is where you can edit the contents of your notes. You can focus this section by pressing \`Enter\`. If a note is highlighted in the notes list, it will open that file. If no results are displayed, it will create a new note with the name of whatever is in the search input.
-			`;
+The bottom section of the app is this section, the editor. This is where you can edit the contents of your notes. You can focus this section by pressing \`Enter\`. If a note is highlighted in the notes list, it will open that file. If no results are displayed, it will create a new note with the name of whatever is in the search input.
+`;
 		}
 	}
