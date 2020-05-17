@@ -1,9 +1,7 @@
-import React from 'react';
-
-import { shallow } from 'enzyme';
-
-import Noted from '../Noted';
-import TitleBar from '../TitleBar';
+const React = require('react');
+const {shallow} = require('enzyme');
+const Noted = require('../Noted');
+const TitleBar = require('../TitleBar');
 
 describe('<Noted />', () => {
     it('should render', () => {

@@ -1,6 +1,6 @@
-import path from 'path';
+const path = require('path');
 
-export default class NotesHandler {
+module.exports = class NotesHandler {
 	constructor(notesPath, fsHandler) {
 		this.path = notesPath;
 		this.fs = fsHandler;

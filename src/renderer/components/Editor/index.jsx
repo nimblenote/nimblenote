@@ -1,9 +1,8 @@
-import React from 'react';
-import { render } from 'react-dom';
+const React = require('react');
+const {render} = require('react-dom');
+const styles = require('./styles.scss');
 
-import styles from './styles.scss';
-
-export default function Editor({
+module.exports =  function Editor({
 	content = '',
 	inputref = {},
 	changeEvent = () => {},

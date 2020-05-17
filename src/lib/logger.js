@@ -1,7 +1,6 @@
-import winston from 'winston';
-import path from 'path';
-
-import { logPath } from './app-paths';
+const path = require('path');
+const winston = require('winston');
+const {logPath} = require('./app-paths');
 
 const logFilePath = path.join(logPath, 'noted.log');
 
@@ -33,4 +32,4 @@ if (process.env.NODE_ENV !== 'production') {
 		}));
 }
 
-export default logger;
+module.exports = logger;

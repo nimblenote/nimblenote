@@ -1,18 +1,14 @@
-import React, { useReducer } from 'react';
-import { render } from 'react-dom';
+const React = require('react');
+const {useReducer} = require('react');
+const {render} = require('react-dom');
+const Mousetrap = require('mousetrap');
+const logger = require('../lib/renderer-logger');
+const ActionCreators = require('../actions/action-creators');
+const legacySnapMigration = require('../lib/legacy-snap-migration');
+const {initialState, notedReducer} = require('../reducers/noted-reducer');
+const Noted = require('../components/Noted');
 
-import Mousetrap from 'mousetrap';
-
-import logger from '../lib/renderer-logger';
-
-import * as ActionCreators from '../actions/action-creators';
-import * as legacySnapMigration from '../lib/legacy-snap-migration';
-
-import { initialState, notedReducer } from '../reducers/noted-reducer';
-
-import Noted from '../components/Noted';
-
-export default function NotedApp() {
+module.exports = function NotedApp() {
 	const [state, dispatch] = useReducer(notedReducer, initialState);
 
 	// Ensure Mousetrap fires even if focus is within input fields

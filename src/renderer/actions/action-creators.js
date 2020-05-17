@@ -1,11 +1,8 @@
-import fs from 'fs';
-
-import { ipcRenderer } from 'electron';
-
-import checkAndProcessError from '../lib/check-and-process-error';
-
-import NotesHandler from '../lib/notes-handler';
-import NotedActions from './noted-actions';
+const fs = require('fs');
+const {ipcRenderer} = require('electron');
+const checkAndProcessError = require('../lib/check-and-process-error');
+const NotesHandler = require('../lib/notes-handler');
+const NotedActions = require('./noted-actions');
 
 const notesStoragePath = ipcRenderer.sendSync(
 	'getPreference',
@@ -17,43 +14,56 @@ const notedActions = new NotedActions(notes);
 
 // Is this an unnecessary middleman to NotedActions?
 
-export function showTitlebar() {
+function showTitlebar() {
 	return NotedActions.showTitlebar(process.platform === 'darwin');
 }
 
-export function showHelp() {
+function showHelp() {
 	return NotedActions.help();
 }
 
-export function deleteFile(files, filename) {
+function deleteFile(files, filename) {
 	return checkAndProcessError(notedActions.delete(files, filename));
 }
 
-export function loadFiles() {
+function loadFiles() {
 	return checkAndProcessError(notedActions.list());
 }
 
-export function selectFile(files, selectedIndex) {
+function selectFile(files, selectedIndex) {
 	return checkAndProcessError(notedActions.selectFile(files, selectedIndex));
 }
 
-export function changeSelectedFile(files, currentlySelected, upDirection) {
+function changeSelectedFile(files, currentlySelected, upDirection) {
 	return checkAndProcessError(
 		notedActions.moveToNextFile(files, currentlySelected, upDirection));
 }
 
-export function resetToInitialState() {
+function resetToInitialState() {
 	return NotedActions.reset();
 }
 
-export function createFile(filename) {
+function createFile(filename) {
 	return checkAndProcessError(notedActions.create(filename));
 }
 
-export function updateFile(filename, content) {
+function updateFile(filename, content) {
 	return checkAndProcessError(notedActions.update(filename, content));
 }
 
-export function searchQuery(files, query, previousQuery) {
+function searchQuery(files, query, previousQuery) {
 	return checkAndProcessError(notedActions.search(files, query, previousQuery));
 }
+
+module.exports = {
+	showTitlebar,
+	showHelp,
+	deleteFile,
+	loadFiles,
+	selectFile,
+	changeSelectedFile,
+	resetToInitialState,
+	createFile,
+	updateFile,
+	searchQuery
+};

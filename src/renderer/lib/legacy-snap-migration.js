@@ -1,11 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-
-import { ipcRenderer } from 'electron';
-
-import logger from './renderer-logger';
-
-import NotesHandler from './notes-handler';
+const fs = require('fs');
+const path = require('path');
+const {ipcRenderer} = require('electron');
+const logger = require('./renderer-logger');
+const NotesHandler = require('./notes-handler');
 
 const notesStoragePath = ipcRenderer.sendSync(
 	'getPreference',
@@ -51,11 +48,11 @@ function getLegacyNoteContents(filename) {
 	return fs.readFileSync(legacyFilePath, 'utf8');
 }
 
-export function isSnapPlatform() {
+function isSnapPlatform() {
 	return process.platform === 'linux' && process.env.SNAP;
 }
 
-export function checkForLegacyNotes() {
+function checkForLegacyNotes() {
 	logger('debug', 'Checking for files to migrate');
 
 	let files = [];
@@ -70,7 +67,7 @@ export function checkForLegacyNotes() {
 	return files;
 }
 
-export function migrateLegacyNotes(files) {
+function migrateLegacyNotes(files) {
 	logger('debug', 'Files to migrate');
 	logger('debug', JSON.stringify(files));
 
@@ -95,7 +92,7 @@ export function migrateLegacyNotes(files) {
 	logger('debug', 'All files migrated');
 }
 
-export function renameLegacyNotesDirectory() {
+function renameLegacyNotesDirectory() {
 	logger('debug', 'Attempt to rename legacy directory');
 
 	if (fs.existsSync(legacySnapNotesDirectory())) {
@@ -104,3 +101,10 @@ export function renameLegacyNotesDirectory() {
 
 	logger('debug', 'Directory renamed');
 }
+
+module.exports = {
+	isSnapPlatform,
+	checkForLegacyNotes,
+	migrateLegacyNotes,
+	renameLegacyNotesDirectory
+};

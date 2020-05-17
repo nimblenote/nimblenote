@@ -1,9 +1,8 @@
-import React from 'react';
-import { render } from 'react-dom';
+const React = require('react');
+const {render} = require('react-dom');
+const styles = require('./styles.scss');
 
-import styles from './styles.scss';
-
-export default function SearchInput({
+module.exports = function SearchInput({
 	query = '',
 	inputref = {},
 	changeEvent = () => {}

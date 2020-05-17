@@ -1,6 +1,5 @@
-import path from 'path';
-
-import { app } from 'electron';
+const path = require('path');
+const {app} = require('electron');
 
 if (process.platform === 'linux' && process.env.SNAP) {
 	app.setPath(
@@ -10,5 +9,7 @@ if (process.platform === 'linux' && process.env.SNAP) {
 	app.setAppLogsPath();
 }
 
-export const userDataPath = app.getPath('userData');
-export const logPath = app.getPath('logs');
+const userDataPath = app.getPath('userData');
+const logPath = app.getPath('logs');
+
+module.exports = {userDataPath,logPath};

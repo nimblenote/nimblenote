@@ -1,18 +1,12 @@
-import {
-	ipcMain, app, BrowserWindow, dialog, Menu, shell,
-} from 'electron';
-
-import { userDataPath } from '../lib/app-paths'; // eslint-disable-line import/order
-
-import Store from 'electron-store'; // eslint-disable-line import/order
-import updateMacOs from './update-macos';
-
-import logger from '../lib/logger'; // eslint-disable-line import/first
-
-import MenuBar from './menu-bar';
-import Preferences from './preferences';
-import initMainListeners from './main-listeners';
-import AppWindow from './app-window';
+const {ipcMain, app, BrowserWindow, dialog, Menu, shell} = require('electron');
+const {userDataPath} = require('../lib/app-paths');
+const Store = require('electron-store');
+const updateMacOs = require('./update-macos');
+const logger = require('../lib/logger');
+const MenuBar = require('./menu-bar');
+const Preferences = require('./preferences');
+const initMainListeners = require('./main-listeners');
+const AppWindow = require('./app-window');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 

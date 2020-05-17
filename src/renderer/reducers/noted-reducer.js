@@ -1,6 +1,6 @@
-import * as Actions from '../actions/action-types';
+const Actions = require('../actions/action-types');
 
-export const initialState = {
+const initialState = {
 	titlebar: true,
 	searchValue: '',
 	query: '',
@@ -15,7 +15,7 @@ export const initialState = {
 	focusOnSearch: true,
 };
 
-export function notedReducer(state, action) {
+function notedReducer(state, action) {
 	switch (action.type) {
 		case Actions.SHOW_TITLEBAR:
 			return {
@@ -114,3 +114,5 @@ export function notedReducer(state, action) {
 			return state;
 	}
 }
+
+module.exports = {initialState, notedReducer};

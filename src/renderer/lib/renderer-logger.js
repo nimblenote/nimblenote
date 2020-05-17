@@ -1,5 +1,5 @@
-import { ipcRenderer } from 'electron';
+const {ipcRenderer} = require('electron');
 
-export default function logger(logLevel, logMessage) {
+module.exports = function logger(logLevel, logMessage) {
 	ipcRenderer.send('logger', { level: logLevel, message: logMessage });
 }

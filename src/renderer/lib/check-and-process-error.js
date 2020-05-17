@@ -1,8 +1,7 @@
-import { ipcRenderer } from 'electron';
+const {ipcRenderer} = require('electron');
+const Actions = require('../actions/action-types');
 
-import * as Actions from '../actions/action-types';
-
-export default function checkAndProcessError(data) {
+module.exports = function checkAndProcessError(data) {
 	if (data.type !== Actions.ERROR) {
 		return data;
 	}

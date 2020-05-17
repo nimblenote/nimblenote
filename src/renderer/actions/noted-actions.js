@@ -1,8 +1,7 @@
-import fuzzy from 'fuzzy';
+const fuzzy = require('fuzzy');
+const Actions = require('./action-types');
 
-import * as Actions from './action-types';
-
-export default class NotedActions {
+module.exports =  class NotedActions {
 	constructor(notesHandler) {
 		this.notesHandler = notesHandler;
 	}
@@ -187,58 +186,58 @@ export default class NotedActions {
 		};
 	}
 
-		static showTitlebar(show) {
-			return {
-				type: Actions.SHOW_TITLEBAR,
-				titlebar: show,
-			};
+	static showTitlebar(show) {
+		return {
+			type: Actions.SHOW_TITLEBAR,
+			titlebar: show,
+		};
+	}
+
+	static help() {
+		return {
+			type: Actions.SHOW_HELP,
+			helpText: this._helpText(),
+		};
+	}
+
+	static reset() {
+		return {
+			type: Actions.RESET_TO_INITIAL_STATE,
+		};
+	}
+
+	// Private
+
+	static _getNextFileIndex(up, index, count) {
+		let current = null;
+
+		const lastItemIndex = count - 1;
+
+		if (index === '') {
+			return up ? lastItemIndex : 0;
 		}
 
-		static help() {
-			return {
-				type: Actions.SHOW_HELP,
-				helpText: this._helpText(),
-			};
-		}
+		if (up) {
+			current = index - 1;
 
-		static reset() {
-			return {
-				type: Actions.RESET_TO_INITIAL_STATE,
-			};
-		}
-
-		// Private
-
-		static _getNextFileIndex(up, index, count) {
-			let current = null;
-
-			const lastItemIndex = count - 1;
-
-			if (index === '') {
-				return up ? lastItemIndex : 0;
-			}
-
-			if (up) {
-				current = index - 1;
-
-				if (current < 0) {
-					current = lastItemIndex;
-				}
-
-				return current;
-			}
-
-			current = index + 1;
-
-			if (current > lastItemIndex) {
-				current = 0;
+			if (current < 0) {
+				current = lastItemIndex;
 			}
 
 			return current;
 		}
 
-		static _helpText() {
-			return `Hello! And welcome to Noted.
+		current = index + 1;
+
+		if (current > lastItemIndex) {
+			current = 0;
+		}
+
+		return current;
+	}
+
+	static _helpText() {
+		return `Hello! And welcome to Noted.
 
 The top section of the screen is your search input. You use this to search for files, or to name and create a new file. You can access it anytime by pressing the \`Esc\` key on your keyboard.
 
@@ -246,5 +245,5 @@ The middle section of the app is your list of notes or search results. You can n
 
 The bottom section of the app is this section, the editor. This is where you can edit the contents of your notes. You can focus this section by pressing \`Enter\`. If a note is highlighted in the notes list, it will open that file. If no results are displayed, it will create a new note with the name of whatever is in the search input.
 `;
-		}
 	}
+}

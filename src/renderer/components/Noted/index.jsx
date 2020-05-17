@@ -1,14 +1,13 @@
-import React, { useReducer, useRef, useEffect } from 'react';
-import { render } from 'react-dom';
+const React = require('react');
+const {useReducer, useRef, useEffect} = require('react');
+const {render} = require('react-dom');
+const styles = require('./styles.scss');
+const TitleBar = require('../TitleBar');
+const SearchInput = require('../SearchInput');
+const FileList = require('../FileList');
+const Editor = require('../Editor');
 
-import styles from './styles.scss';
-
-import TitleBar from '../TitleBar';
-import SearchInput from '../SearchInput';
-import FileList from '../FileList';
-import Editor from '../Editor';
-
-export default function Noted({
+module.exports = function Noted({
 	loadFiles = () => {},
 	createFile = () => {},
 	selectFile = () => {},

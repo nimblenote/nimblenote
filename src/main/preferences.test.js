@@ -1,7 +1,5 @@
 const path = require('path');
-
 const test = require('ava');
-
 const Preferences = require('./preferences');
 
 class InMemoryStore {

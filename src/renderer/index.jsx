@@ -1,8 +1,6 @@
-import React from 'react';
-import { render } from 'react-dom';
-
-import './app.global.scss';
-
-import NotedApp from './containers/noted-app';
+const React = require('react');
+const {render} = require('react-dom');
+const NotedApp = require('./containers/noted-app');
+require('./app.global.scss');
 
 render(<NotedApp />, document.getElementById('app'));
