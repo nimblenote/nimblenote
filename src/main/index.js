@@ -28,10 +28,12 @@ const menuBar = new MenuBar({
 Menu.setApplicationMenu(
 	Menu.buildFromTemplate(menuBar.getTemplate()));
 
-new AppWindow({
+const appWindow = new AppWindow({
 	BrowserWindowClass: BrowserWindow,
 	AppClass: app,
 	preferences,
 	isDevelopment,
 	process
 });
+
+appWindow.init();

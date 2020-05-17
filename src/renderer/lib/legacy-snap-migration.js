@@ -6,8 +6,7 @@ const NotesHandler = require('./notes-handler');
 
 const notesStoragePath = ipcRenderer.sendSync(
 	'getPreference',
-	'notesStoragePath',
-	);
+	'notesStoragePath');
 
 const notes = new NotesHandler(notesStoragePath, fs);
 notes.setup();
@@ -71,7 +70,7 @@ function migrateLegacyNotes(files) {
 	logger('debug', 'Files to migrate');
 	logger('debug', JSON.stringify(files));
 
-	files.forEach((filename) => {
+	files.forEach(filename => {
 		logger('debug', `Attempt to migrate: ${filename}`);
 
 		const newFileName = getMigratedFilename(filename);

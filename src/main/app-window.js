@@ -1,4 +1,4 @@
-const { format } = require('url');
+const {format} = require('url');
 const path = require('path');
 
 module.exports = class AppWindow {
@@ -10,11 +10,9 @@ module.exports = class AppWindow {
 		this._process = options.process;
 
 		this._mainWindow = null;
-
-		this._initAppListeners();
 	}
 
-	_initAppListeners() {
+	init() {
 		this._AppClass.on('window-all-closed', () => {
 			if (this._process.platform !== 'darwin') {
 				this._AppClass.quit();
@@ -35,12 +33,12 @@ module.exports = class AppWindow {
 	_createMainWindow() {
 		const window = new this._BrowserWindowClass({
 			webPreferences: {
-				nodeIntegration: true,
+				nodeIntegration: true
 			},
 			backgroundColor: '#21252b',
 			titleBarStyle: 'hidden',
 			width: this._preferences.get('windowWidth'),
-			height: this._preferences.get('windowHeight'),
+			height: this._preferences.get('windowHeight')
 		});
 
 		if (this._isDevelopment) {
@@ -51,7 +49,7 @@ module.exports = class AppWindow {
 			window.loadURL(format({
 				pathname: path.join(__dirname, 'index.html'),
 				protocol: 'file',
-				slashes: true,
+				slashes: true
 			}));
 		}
 

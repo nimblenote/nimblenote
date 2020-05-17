@@ -12,4 +12,4 @@ if (process.platform === 'linux' && process.env.SNAP) {
 const userDataPath = app.getPath('userData');
 const logPath = app.getPath('logs');
 
-module.exports = {userDataPath,logPath};
+module.exports = {userDataPath, logPath};

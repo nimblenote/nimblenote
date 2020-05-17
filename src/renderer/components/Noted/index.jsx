@@ -142,30 +142,28 @@ module.exports = function Noted({
 	}, [startSelection]);
 
 	return (
-		<>
-			<div
-				className={styles.container}
-				onKeyDown={e => handleKeyboard(e)}
-			>
-				{titlebar ? <TitleBar /> : ''}
-				<SearchInput
-					query={searchValue}
-					changeEvent={e => handleSearch(e)}
-					inputref={searchInput}
-				/>
-				<FileList
-					changeEvent={e => handleFileList(e)}
-					files={files}
-					selectedIndex={fileIndex}
-					inputref={fileList}
-				/>
-				<Editor
-					changeEvent={e => handleEditor(e)}
-					inputref={editorInput}
-					content={editorContent}
-					disabled={editorDisabled}
-				/>
-			</div>
-		</>
+		<div
+			className={styles.container}
+			onKeyDown={e => handleKeyboard(e)}
+		>
+			{titlebar ? <TitleBar /> : ''}
+			<SearchInput
+				query={searchValue}
+				changeEvent={e => handleSearch(e)}
+				inputref={searchInput}
+			/>
+			<FileList
+				changeEvent={e => handleFileList(e)}
+				files={files}
+				selectedIndex={fileIndex}
+				inputref={fileList}
+			/>
+			<Editor
+				changeEvent={e => handleEditor(e)}
+				inputref={editorInput}
+				content={editorContent}
+				disabled={editorDisabled}
+			/>
+		</div>
 	);
 }

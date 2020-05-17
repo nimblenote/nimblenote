@@ -10,13 +10,12 @@ const logger = winston.createLogger({
 		new winston.transports.Console({
 			format: winston.format.combine(
 				winston.format.colorize(),
-				winston.format.simple(),
-				),
+				winston.format.simple())
 		}),
 		new winston.transports.File({
 			filename: logFilePath,
-			format: winston.format.simple(),
-		}),
+			format: winston.format.simple()
+		})
 	]});
 
 if (process.env.NODE_ENV !== 'production') {
@@ -28,7 +27,7 @@ if (process.env.NODE_ENV !== 'production') {
 	logger.add(
 		new winston.transports.File({
 			filename: devLogFilePath,
-			format: winston.format.simple(),
+			format: winston.format.simple()
 		}));
 }
 

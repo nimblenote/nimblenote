@@ -32,11 +32,10 @@ module.exports = class NotesHandler {
 		return this.fs.writeFileSync(
 			path.join(this.path, filename),
 			contents,
-			'utf8',
-			);
+			'utf8');
 	}
 
 	delete(filename) {
 		return this.fs.unlinkSync(path.join(this.path, filename));
 	}
-}
+};

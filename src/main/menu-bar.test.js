@@ -2,8 +2,8 @@ const test = require('ava');
 
 const MenuBar = require('./menu-bar');
 
-const macMenuBar = new MenuBar({ isMac: true, appName: 'Noted' });
-const nonMacMenuBar = new MenuBar({ isMac: false, appName: 'Noted' });
+const macMenuBar = new MenuBar({isMac: true, appName: 'Noted'});
+const nonMacMenuBar = new MenuBar({isMac: false, appName: 'Noted'});
 
 test('it will generate a macOS menu', t => {
 	const template = macMenuBar.getTemplate();

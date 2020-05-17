@@ -1,11 +1,12 @@
 const React = require('react');
-const {render} = require('react-dom');
 const styles = require('./styles.scss');
 
-module.exports = function TitleBar() {
+const TitleBar = () => {
 	return (
 		<div className={styles.titlebar}>
 			<span>Noted</span>
 		</div>
-	)
-}
+	);
+};
+
+module.exports = TitleBar;

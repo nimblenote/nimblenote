@@ -12,7 +12,7 @@ const initialState = {
 	editorContent: '',
 	editorDisabled: true,
 	newlyCreatedFile: false,
-	focusOnSearch: true,
+	focusOnSearch: true
 };
 
 function notedReducer(state, action) {
@@ -20,7 +20,7 @@ function notedReducer(state, action) {
 		case Actions.SHOW_TITLEBAR:
 			return {
 				...state,
-				titlebar: action.titlebar,
+				titlebar: action.titlebar
 			};
 		case Actions.SHOW_HELP:
 			return {
@@ -30,14 +30,14 @@ function notedReducer(state, action) {
 				files: [],
 				editorContent: action.helpText,
 				editorDisabled: true,
-				newlyCreatedFile: false,
+				newlyCreatedFile: false
 			};
 		case Actions.LOAD_FILES:
 			return {
 				...state,
 				allFiles: action.files,
 				files: action.files,
-				newlyCreatedFile: false,
+				newlyCreatedFile: false
 			};
 		case Actions.CHANGE_SELECTED_FILE:
 			return {
@@ -50,7 +50,7 @@ function notedReducer(state, action) {
 				query: action.filename,
 				editorDisabled: false,
 				newlyCreatedFile: false,
-				focusOnSearch: false,
+				focusOnSearch: false
 			};
 		case Actions.SEARCH_QUERY:
 			return {
@@ -63,7 +63,7 @@ function notedReducer(state, action) {
 				fileIndex: action.selectedFileIndex,
 				editorContent: action.content,
 				editorDisabled: action.selectedFileIndex === '',
-				newlyCreatedFile: false,
+				newlyCreatedFile: false
 			};
 		case Actions.CREATE_FILE:
 			return {
@@ -76,14 +76,14 @@ function notedReducer(state, action) {
 				editorContent: '',
 				editorDisabled: false,
 				newlyCreatedFile: true,
-				focusOnSearch: false,
+				focusOnSearch: false
 			};
 		case Actions.UPDATE_FILE:
 			return {
 				...state,
 				editorContent: action.content,
 				newlyCreatedFile: false,
-				focusOnSearch: false,
+				focusOnSearch: false
 			};
 		case Actions.RESET_TO_INITIAL_STATE:
 			return {
@@ -95,7 +95,7 @@ function notedReducer(state, action) {
 				editorContent: '',
 				editorDisabled: true,
 				newlyCreatedFile: false,
-				focusOnSearch: true,
+				focusOnSearch: true
 			};
 		case Actions.DELETE_FILE:
 			return {
@@ -108,7 +108,7 @@ function notedReducer(state, action) {
 				editorContent: '',
 				editorDisabled: true,
 				newlyCreatedFile: false,
-				focusOnSearch: true,
+				focusOnSearch: true
 			};
 		default:
 			return state;
