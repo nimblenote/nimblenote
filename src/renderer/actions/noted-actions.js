@@ -1,7 +1,7 @@
 const fuzzy = require('fuzzy');
 const Actions = require('./action-types');
 
-module.exports =  class NotedActions {
+module.exports = class NotedActions {
 	constructor(notesHandler) {
 		this.notesHandler = notesHandler;
 	}
@@ -10,36 +10,36 @@ module.exports =  class NotedActions {
 		let files = [];
 		try {
 			files = this.notesHandler.list();
-		} catch (error) {
+		} catch {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to load notes',
-				message: `Noted was unable to load your notes from ${this.notesHandler.getPath()}`,
+				message: `Noted was unable to load your notes from ${this.notesHandler.getPath()}`
 			};
 		}
 
 		return {
 			type: Actions.LOAD_FILES,
-			files,
+			files
 		};
 	}
 
 	delete(files, filename) {
 		try {
 			this.notesHandler.delete(filename);
-		} catch (error) {
+		} catch {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to delete note',
-				message: `Noted was unable to delete ${filename}`,
+				message: `Noted was unable to delete ${filename}`
 			};
 		}
 
-		const filesAfterDelete = files.filter((i) => i !== filename);
+		const filesAfterDelete = files.filter(i => i !== filename);
 
 		return {
 			type: Actions.DELETE_FILE,
-			files: filesAfterDelete,
+			files: filesAfterDelete
 		};
 	}
 
@@ -48,11 +48,11 @@ module.exports =  class NotedActions {
 		let content = '';
 		try {
 			content = this.notesHandler.read(filename);
-		} catch (error) {
+		} catch {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to load note',
-				message: `Noted was unable to load ${filename}`,
+				message: `Noted was unable to load ${filename}`
 			};
 		}
 
@@ -60,7 +60,7 @@ module.exports =  class NotedActions {
 			type: Actions.CHANGE_SELECTED_FILE,
 			nextIndex: selectedIndex,
 			filename,
-			content,
+			content
 		};
 	}
 
@@ -75,11 +75,11 @@ module.exports =  class NotedActions {
 
 		try {
 			content = this.notesHandler.read(filename);
-		} catch (error) {
+		} catch {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to load note',
-				message: `Noted was unable to load ${filename}`,
+				message: `Noted was unable to load ${filename}`
 			};
 		}
 
@@ -87,7 +87,7 @@ module.exports =  class NotedActions {
 			type: Actions.CHANGE_SELECTED_FILE,
 			nextIndex,
 			filename,
-			content,
+			content
 		};
 	}
 
@@ -96,40 +96,40 @@ module.exports =  class NotedActions {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to create note',
-				message: `${filename} already exists`,
+				message: `${filename} already exists`
 			};
 		}
 
 		try {
 			this.notesHandler.write(filename, '');
-		} catch (error) {
+		} catch {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to create note',
-				message: `Noted was unable to create note: ${filename}`,
+				message: `Noted was unable to create note: ${filename}`
 			};
 		}
 
 		return {
 			type: Actions.CREATE_FILE,
-			filename,
+			filename
 		};
 	}
 
 	update(filename, content) {
 		try {
 			this.notesHandler.write(filename, content);
-		} catch (error) {
+		} catch {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to save note',
-				message: `Noted was unable to save ${filename}`,
+				message: `Noted was unable to save ${filename}`
 			};
 		}
 
 		return {
 			type: Actions.UPDATE_FILE,
-			content,
+			content
 		};
 	}
 
@@ -150,9 +150,9 @@ module.exports =  class NotedActions {
 				filename = results[exactMatch];
 				selectedFileIndex = exactMatch;
 			} else if (
-				results[0].indexOf(query) === 0
-				&& query !== previousQuery
-				&& query.length > previousQuery.length
+				results[0].indexOf(query) === 0 &&
+				query !== previousQuery &&
+				query.length > previousQuery.length
 			) {
 				[filename] = results;
 				selectedFileIndex = 0;
@@ -164,11 +164,11 @@ module.exports =  class NotedActions {
 			if (filename !== '') {
 				try {
 					content = this.notesHandler.read(filename);
-				} catch (error) {
+				} catch {
 					return {
 						type: Actions.ERROR,
 						title: 'Unable to load note',
-						message: `Noted was unable to load ${filename}`,
+						message: `Noted was unable to load ${filename}`
 					};
 				}
 			}
@@ -182,27 +182,27 @@ module.exports =  class NotedActions {
 			selectedFileIndex,
 			content,
 			startSelection,
-			endSelection,
+			endSelection
 		};
 	}
 
 	static showTitlebar(show) {
 		return {
 			type: Actions.SHOW_TITLEBAR,
-			titlebar: show,
+			titlebar: show
 		};
 	}
 
 	static help() {
 		return {
 			type: Actions.SHOW_HELP,
-			helpText: this._helpText(),
+			helpText: this._helpText()
 		};
 	}
 
 	static reset() {
 		return {
-			type: Actions.RESET_TO_INITIAL_STATE,
+			type: Actions.RESET_TO_INITIAL_STATE
 		};
 	}
 
@@ -246,4 +246,4 @@ The middle section of the app is your list of notes or search results. You can n
 The bottom section of the app is this section, the editor. This is where you can edit the contents of your notes. You can focus this section by pressing \`Enter\`. If a note is highlighted in the notes list, it will open that file. If no results are displayed, it will create a new note with the name of whatever is in the search input.
 `;
 	}
-}
+};

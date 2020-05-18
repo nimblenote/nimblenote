@@ -1,24 +1,31 @@
 const React = require('react');
-const {render} = require('react-dom');
+const PropTypes = require('prop-types');
 const styles = require('./styles.scss');
 
-module.exports =  function Editor({
+const Editor = ({
 	content = '',
 	inputref = {},
 	changeEvent = () => {},
 	disabled = true
-}) {
+}) => {
 	return (
 		<div className={styles.editor}>
 			<textarea
 				ref={inputref}
-				onChange={changeEvent}
 				value={content}
 				disabled={disabled ? 'disabled' : null}
-				placeholder={
-					disabled ? 'No note selected' : 'Enter note contents...'
-				}
+				placeholder={disabled ? 'No note selected' : 'Enter note contents...'}
+				onChange={changeEvent}
 			/>
 		</div>
-		);
-}
+	);
+};
+
+Editor.propTypes = {
+	content: PropTypes.string,
+	inputref: PropTypes.object,
+	changeEvent: PropTypes.func,
+	disabled: PropTypes.bool
+};
+
+module.exports = Editor;

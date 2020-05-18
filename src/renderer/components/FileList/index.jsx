@@ -1,13 +1,13 @@
 const React = require('react');
-const {render} = require('react-dom');
+const PropTypes = require('prop-types');
 const styles = require('./styles.scss');
 
-module.exports =  function FileList({
+const FileList = ({
 	selectedIndex = '',
 	inputref = {},
-	changeEvent = () => {},
-	files = []
-}) {
+	files = [],
+	changeEvent = () => {}
+}) => {
 	if (files) {
 		files = files.map((item, i) => {
 			const selected =
@@ -28,14 +28,23 @@ module.exports =  function FileList({
 	return (
 		<div className={styles.filelist} tabIndex="0">
 			<ul
-				role="presentation"
-				value={selectedIndex}
-				onClick={changeEvent}
 				ref={inputref}
+				value={selectedIndex}
+				role="presentation"
 				size="5"
+				onClick={changeEvent}
 			>
 				{ files }
 			</ul>
 		</div>
 	);
-}
+};
+
+FileList.propTypes = {
+	selectedIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	inputref: PropTypes.object,
+	files: PropTypes.arrayOf(PropTypes.string),
+	changeEvent: PropTypes.func
+};
+
+module.exports = FileList;

@@ -1,6 +1,5 @@
 const React = require('react');
 const {useReducer} = require('react');
-const {render} = require('react-dom');
 const Mousetrap = require('mousetrap');
 const logger = require('../lib/renderer-logger');
 const ActionCreators = require('../actions/action-creators');
@@ -8,11 +7,11 @@ const legacySnapMigration = require('../lib/legacy-snap-migration');
 const {initialState, notedReducer} = require('../reducers/noted-reducer');
 const Noted = require('../components/Noted');
 
-module.exports = function NotedApp() {
+const NotedApp = () => {
 	const [state, dispatch] = useReducer(notedReducer, initialState);
 
 	// Ensure Mousetrap fires even if focus is within input fields
-	Mousetrap.prototype.stopCallback = (e, element, combo) => false;
+	Mousetrap.prototype.stopCallback = () => false;
 
 	Mousetrap.bind(['mod+d'], () => {
 		const filename = state.files[state.fileIndex];
@@ -30,8 +29,10 @@ module.exports = function NotedApp() {
 		if (legacySnapMigration.isSnapPlatform()) {
 			const legacyFiles = legacySnapMigration.checkForLegacyNotes();
 
-			if (legacyFiles.length) {
-				const confirmMessage = "It looks like Noted has been updated and found some notes from an old version.\n\nShould Noted recover the notes?";
+			if (legacyFiles.length > 0) {
+				const confirmMessage = `It looks like Noted has been updated and found some notes from an old version.
+
+Should Noted recover the notes?`;
 
 				if (confirm(confirmMessage)) {
 					logger('debug', 'Migrating legacy notes');
@@ -48,7 +49,9 @@ module.exports = function NotedApp() {
 				logger('debug', 'Legacy directory renamed');
 			}
 		}
-	}
+	};
 
-	return <Noted {...state} {...ActionCreators} dispatch={dispatch} onInit={checkForNotesToMigrate} />;
-}
+	return <Noted {...state} {...ActionCreators} dispatch={dispatch} onInit={checkForNotesToMigrate}/>;
+};
+
+module.exports = NotedApp;

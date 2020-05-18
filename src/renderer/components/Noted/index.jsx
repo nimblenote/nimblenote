@@ -1,13 +1,40 @@
 const React = require('react');
-const {useReducer, useRef, useEffect} = require('react');
-const {render} = require('react-dom');
+const PropTypes = require('prop-types');
+const {useRef, useEffect} = require('react');
 const styles = require('./styles.scss');
 const TitleBar = require('../TitleBar');
 const SearchInput = require('../SearchInput');
 const FileList = require('../FileList');
 const Editor = require('../Editor');
 
-module.exports = function Noted({
+const notedPropTypes = {
+	loadFiles: PropTypes.func,
+	createFile: PropTypes.func,
+	selectFile: PropTypes.func,
+	showHelp: PropTypes.func,
+	showTitlebar: PropTypes.func,
+	changeSelectedFile: PropTypes.func,
+	updateFile: PropTypes.func,
+	searchQuery: PropTypes.func,
+	resetToInitialState: PropTypes.func,
+	newlyCreatedFile: PropTypes.bool,
+	fileIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	allFiles: PropTypes.arrayOf(PropTypes.string),
+	files: PropTypes.arrayOf(PropTypes.string),
+	startSelection: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+	endSelection: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+	searchValue: PropTypes.string,
+	query: PropTypes.string,
+	editorContent: PropTypes.string,
+	editorDisabled: PropTypes.bool,
+	titlebar: PropTypes.bool,
+	focusOnSearch: PropTypes.bool,
+	dispatch: PropTypes.func,
+	onInit: PropTypes.func,
+	onReady: PropTypes.func
+};
+
+const Noted = ({
 	loadFiles = () => {},
 	createFile = () => {},
 	selectFile = () => {},
@@ -31,18 +58,18 @@ module.exports = function Noted({
 	focusOnSearch = true,
 	dispatch = () => {},
 	onInit = () => {},
-	onReady = () => {},
-}) {
+	onReady = () => {}
+}) => {
 	const searchInput = useRef(null);
 	const fileList = useRef(null);
 	const editorInput = useRef(null);
 
-	const handleKeyboard = (event) => {
+	const handleKeyboard = event => {
 		if (['INPUT', 'DIV'].includes(event.target.tagName)) {
 			if (['ArrowUp', 'ArrowDown'].includes(event.key)) {
 				event.preventDefault();
 
-				if (files.length) {
+				if (files.length > 0) {
 					dispatch(changeSelectedFile(
 						files,
 						fileIndex,
@@ -70,9 +97,9 @@ module.exports = function Noted({
 
 			dispatch(resetToInitialState());
 		}
-	}
+	};
 
-	const handleSearch = (event) => {
+	const handleSearch = event => {
 		if (event.target.value === '?') {
 			dispatch(showHelp());
 
@@ -83,24 +110,24 @@ module.exports = function Noted({
 			allFiles,
 			event.target.value,
 			query));
-	}
+	};
 
-	const handleFileList = (event) => {
-		if (files.length) {
+	const handleFileList = event => {
+		if (files.length > 0) {
 			dispatch(selectFile(
 				files,
-				event.target.getAttribute('value') * 1));
+				Number(event.target.getAttribute('value'))));
 		}
-	}
+	};
 
-	const handleEditor = (event) => {
+	const handleEditor = event => {
 		dispatch(updateFile(searchValue, event.target.value));
-	}
+	};
 
 	useEffect(() => {
 		onInit();
 
-		console.log('componentDidMount')
+		console.log('componentDidMount');
 		dispatch(loadFiles());
 		dispatch(showTitlebar());
 
@@ -116,14 +143,15 @@ module.exports = function Noted({
 	}, [focusOnSearch]);
 
 	useEffect(() => {
-		console.log('componentDidUpdate')
-		console.log('newlyCreatedFile')
+		console.log('componentDidUpdate');
+		console.log('newlyCreatedFile');
 		editorInput.current.focus();
 	}, [newlyCreatedFile]);
 
 	useEffect(() => {
-		console.log('componentDidUpdate')
-		console.log('fileIndex')
+		console.log('componentDidUpdate');
+		console.log('fileIndex');
+
 		if (fileIndex) {
 			const fileDom = fileList.current.childNodes[fileIndex];
 			fileDom.scrollIntoViewIfNeeded();
@@ -131,8 +159,8 @@ module.exports = function Noted({
 	}, [fileIndex]);
 
 	useEffect(() => {
-		console.log('componentDidUpdate')
-		console.log('startSelection')
+		console.log('componentDidUpdate');
+		console.log('startSelection');
 
 		if (startSelection !== false) {
 			searchInput.current.setSelectionRange(
@@ -144,26 +172,30 @@ module.exports = function Noted({
 	return (
 		<div
 			className={styles.container}
-			onKeyDown={e => handleKeyboard(e)}
+			onKeyDown={event => handleKeyboard(event)}
 		>
-			{titlebar ? <TitleBar /> : ''}
+			{titlebar ? <TitleBar/> : ''}
 			<SearchInput
 				query={searchValue}
-				changeEvent={e => handleSearch(e)}
+				changeEvent={event => handleSearch(event)}
 				inputref={searchInput}
 			/>
 			<FileList
-				changeEvent={e => handleFileList(e)}
+				changeEvent={event => handleFileList(event)}
 				files={files}
 				selectedIndex={fileIndex}
 				inputref={fileList}
 			/>
 			<Editor
-				changeEvent={e => handleEditor(e)}
+				changeEvent={event => handleEditor(event)}
 				inputref={editorInput}
 				content={editorContent}
 				disabled={editorDisabled}
 			/>
 		</div>
 	);
-}
+};
+
+Noted.propTypes = notedPropTypes;
+
+module.exports = Noted;
