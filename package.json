@@ -16,7 +16,6 @@
   },
   "scripts": {
     "dev": "electron-webpack dev",
-    "storybook": "start-storybook",
     "lint": "xo",
     "test": "ava",
     "build": "electron-webpack && electron-builder --publish never",
@@ -70,7 +69,6 @@
     "@babel/preset-react": "^7.9.4",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@storybook/react": "^5.3.18",
     "ava": "^3.8.2",
     "commitizen": "^4.1.2",
     "cz-conventional-changelog": "^3.2.0",
