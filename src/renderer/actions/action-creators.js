@@ -23,7 +23,18 @@ function showHelp() {
 }
 
 function deleteFile(files, filename) {
-	return checkAndProcessError(notedActions.delete(files, filename));
+	const confirmOptions = {
+		type: 'warning',
+		buttons: ['Delete', 'Cancel'],
+		title: 'Delete note',
+		message: `Are you sure you wish to delete: ${filename}?`
+	};
+
+	const confirmDelete = ipcRenderer.sendSync('showDialog', confirmOptions);
+
+	if (confirmDelete === 0) {
+		return checkAndProcessError(notedActions.delete(files, filename));
+	}
 }
 
 function loadFiles() {

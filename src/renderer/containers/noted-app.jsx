@@ -3,6 +3,7 @@ const {useReducer} = require('react');
 const Mousetrap = require('mousetrap');
 const logger = require('../lib/renderer-logger');
 const ActionCreators = require('../actions/action-creators');
+const legacySnapMigration = require('../lib/legacy-snap-migration');
 const {initialState, notedReducer} = require('../reducers/noted-reducer');
 const Noted = require('../components/Noted');
 
@@ -15,7 +16,7 @@ const NotedApp = () => {
 	Mousetrap.bind(['mod+d'], () => {
 		const filename = state.files[state.fileIndex];
 
-		if (filename && confirm(`Are you sure you want to delete: ${filename}?`)) {
+		if (filename) {
 			dispatch(ActionCreators.deleteFile(state.allFiles, filename));
 		}
 

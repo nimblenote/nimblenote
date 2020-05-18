@@ -10,4 +10,8 @@ module.exports = (ipcMain, preferences, dialog, logger) => {
 	ipcMain.on('logger', (event, {level, message}) => {
 		logger.log(level, message, {source: 'renderer'});
 	});
+
+	ipcMain.on('showDialog', (event, args) => {
+		event.returnValue = dialog.showMessageBoxSync(args);
+	});
 };
