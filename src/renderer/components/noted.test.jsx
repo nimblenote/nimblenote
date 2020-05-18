@@ -1,6 +1,7 @@
 const test = require('ava');
 const React = require('react');
 const {shallow} = require('enzyme');
+
 const Noted = require('./Noted');
 const TitleBar = require('./TitleBar');
 
