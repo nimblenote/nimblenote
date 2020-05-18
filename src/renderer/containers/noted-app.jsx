@@ -1,9 +1,7 @@
 const React = require('react');
 const {useReducer} = require('react');
 const Mousetrap = require('mousetrap');
-const logger = require('../lib/renderer-logger');
 const ActionCreators = require('../actions/action-creators');
-const legacySnapMigration = require('../lib/legacy-snap-migration');
 const {initialState, notedReducer} = require('../reducers/noted-reducer');
 const Noted = require('../components/Noted');
 
