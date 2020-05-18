@@ -6,7 +6,7 @@ const Noted = require('./Noted');
 const TitleBar = require('./TitleBar');
 
 test('Noted contains TitleBar', t => {
-	const component = shallow(<Noted />);
+	const component = shallow(<Noted/>);
 
 	t.true(component.contains(<TitleBar/>));
 });

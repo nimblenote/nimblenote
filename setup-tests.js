@@ -1,13 +1,14 @@
+const {addHook} = require('pirates');
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 
-Enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({adapter: new Adapter()});
 
 require('@babel/register')({
-	// ava already handles transpilation of test files
+	// AVA already handles transpilation of test files
 	ignore: ['node_modules/*', '**/*.test.js', '**/*.test.jsx'],
 	presets: ['@babel/preset-react']
 });
 
-// setup dummies for scss files that are loaded
-require.extensions['.scss'] = () => {};
+// Setup dummies for scss
+addHook(() => '', {exts: ['.scss']});
