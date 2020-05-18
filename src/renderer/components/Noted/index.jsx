@@ -167,7 +167,7 @@ const Noted = ({
 				startSelection,
 				endSelection);
 		}
-	}, [startSelection]);
+	}, [startSelection, endSelection]);
 
 	return (
 		<div
@@ -190,7 +190,7 @@ const Noted = ({
 				changeEvent={event => handleEditor(event)}
 				inputref={editorInput}
 				content={editorContent}
-				disabled={editorDisabled}
+				isDisabled={editorDisabled}
 			/>
 		</div>
 	);

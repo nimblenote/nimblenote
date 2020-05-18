@@ -6,15 +6,15 @@ const Editor = ({
 	content = '',
 	inputref = {},
 	changeEvent = () => {},
-	disabled = true
+	isDisabled = true
 }) => {
 	return (
 		<div className={styles.editor}>
 			<textarea
 				ref={inputref}
 				value={content}
-				disabled={disabled ? 'disabled' : null}
-				placeholder={disabled ? 'No note selected' : 'Enter note contents...'}
+				disabled={isDisabled ? 'disabled' : null}
+				placeholder={isDisabled ? 'No note selected' : 'Enter note contents...'}
 				onChange={changeEvent}
 			/>
 		</div>
@@ -25,7 +25,7 @@ Editor.propTypes = {
 	content: PropTypes.string,
 	inputref: PropTypes.object,
 	changeEvent: PropTypes.func,
-	disabled: PropTypes.bool
+	isDisabled: PropTypes.bool
 };
 
 module.exports = Editor;
