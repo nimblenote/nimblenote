@@ -7,4 +7,4 @@ render((
 	<div className={`platform-${process.platform}`}>
 		<NotedApp style={globalStyles}/>
 	</div>),
-	document.querySelector('#app'));
+document.querySelector('#app'));
