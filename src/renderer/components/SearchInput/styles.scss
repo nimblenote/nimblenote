@@ -3,8 +3,8 @@ $textColor: rgba(130, 150, 150, 1);
 
 .searchinput {
 	flex: none;
-	padding: 5px;
-	margin: 5px 0;
+	padding: 10px;
+	margin: 0;
 
 	input {
 		background: inherit;
@@ -21,5 +21,14 @@ $textColor: rgba(130, 150, 150, 1);
 		&:focus {
 			border-color: #568af2;
 		}
+	}
+}
+
+:global(.platform-darwin) .searchinput {
+	background: #323031;
+
+	input {
+		background: #282c34;
+		border: 3px solid #4f5664;
 	}
 }

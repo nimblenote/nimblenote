@@ -37,6 +37,7 @@ module.exports = class AppWindow {
 			},
 			backgroundColor: '#21252b',
 			titleBarStyle: 'hidden',
+			trafficLightPosition: {x: 10, y: 20},
 			width: this._preferences.get('windowWidth'),
 			height: this._preferences.get('windowHeight')
 		});
