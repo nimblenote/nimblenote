@@ -7,11 +7,11 @@ module.exports = class Preferences {
 		this._defaults = {
 			windowWidth: 400,
 			windowHeight: 600,
-			notesStoragePath: path.join(this._userDataPath, 'NotedNotes')
+			notesStoragePath: path.join(this._userDataPath, 'notes')
 		};
 
 		this._store = new options.StoreClass({
-			name: 'noted',
+			name: 'nimblenote',
 			defaults: this._defaults
 		});
 	}

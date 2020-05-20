@@ -2,7 +2,7 @@ const path = require('path');
 const winston = require('winston');
 const {logPath} = require('./app-paths');
 
-const logFilePath = path.join(logPath, 'noted.log');
+const logFilePath = path.join(logPath, 'nimblenote.log');
 
 const logger = winston.createLogger({
 	level: 'debug',

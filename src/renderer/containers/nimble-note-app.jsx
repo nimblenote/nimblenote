@@ -2,11 +2,11 @@ const React = require('react');
 const {useReducer} = require('react');
 const Mousetrap = require('mousetrap');
 const ActionCreators = require('../actions/action-creators');
-const {initialState, notedReducer} = require('../reducers/noted-reducer');
-const Noted = require('../components/Noted');
+const {initialState, nimbleNoteReducer} = require('../reducers/nimble-note-reducer');
+const NimbleNote = require('../components/NimbleNote');
 
-const NotedApp = () => {
-	const [state, dispatch] = useReducer(notedReducer, initialState);
+const NimbleNoteApp = () => {
+	const [state, dispatch] = useReducer(nimbleNoteReducer, initialState);
 
 	// Ensure Mousetrap fires even if focus is within input fields
 	Mousetrap.prototype.stopCallback = () => false;
@@ -21,7 +21,7 @@ const NotedApp = () => {
 		return false;
 	});
 
-	return <Noted {...state} {...ActionCreators} dispatch={dispatch}/>;
+	return <NimbleNote {...state} {...ActionCreators} dispatch={dispatch}/>;
 };
 
-module.exports = NotedApp;
+module.exports = NimbleNoteApp;

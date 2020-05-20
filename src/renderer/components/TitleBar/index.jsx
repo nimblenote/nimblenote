@@ -4,7 +4,7 @@ const styles = require('./styles.scss');
 const TitleBar = () => {
 	return (
 		<div className={styles.titlebar}>
-			<span>Noted</span>
+			<span>nimblenote</span>
 		</div>
 	);
 };

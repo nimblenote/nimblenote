@@ -1,18 +1,18 @@
 {
-	"name": "noted",
-	"productName": "Noted",
+	"name": "nimblenote",
+	"productName": "nimblenote",
 	"description": "Your notes, powered by the keyboard",
-	"homepage": "https://notedapp.org",
+	"homepage": "https://nimblenote.app",
 	"author": {
 		"name": "David Winter",
 		"email": "i@djw.me",
 		"url": "https://davidwinter.dev"
 	},
-	"version": "0.6.9",
+	"version": "1.0.0",
 	"license": "UNLICENSED",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/davidwinter/noted.git"
+		"url": "https://gitlab.com/leavesunderfoot/nimblenote.git"
 	},
 	"scripts": {
 		"dev": "electron-webpack dev",
@@ -61,7 +61,7 @@
 		}
 	},
 	"build": {
-		"appId": "dev.davidwinter.noted",
+		"appId": "com.leavesunderfoot.nimblenote",
 		"mac": {
 			"target": "default"
 		},

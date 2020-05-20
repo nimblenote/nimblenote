@@ -1,7 +1,6 @@
 const {ipcMain, app, BrowserWindow, dialog, Menu, shell} = require('electron');
 const {userDataPath} = require('../lib/app-paths');
 const Store = require('electron-store');
-const updateMacOs = require('./update-macos');
 const logger = require('../lib/logger');
 const MenuBar = require('./menu-bar');
 const Preferences = require('./preferences');
@@ -10,9 +9,7 @@ const AppWindow = require('./app-window');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-logger.info('Noted');
-
-updateMacOs(logger);
+logger.info('nimblenote');
 
 const preferences = new Preferences({StoreClass: Store, userDataPath});
 

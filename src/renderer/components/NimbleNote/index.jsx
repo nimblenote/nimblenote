@@ -7,7 +7,7 @@ const SearchInput = require('../SearchInput');
 const FileList = require('../FileList');
 const Editor = require('../Editor');
 
-const notedPropTypes = {
+const nimbleNotePropTypes = {
 	loadFiles: PropTypes.func,
 	createFile: PropTypes.func,
 	selectFile: PropTypes.func,
@@ -34,7 +34,7 @@ const notedPropTypes = {
 	onReady: PropTypes.func
 };
 
-const Noted = ({
+const NimbleNote = ({
 	loadFiles = () => {},
 	createFile = () => {},
 	selectFile = () => {},
@@ -196,6 +196,6 @@ const Noted = ({
 	);
 };
 
-Noted.propTypes = notedPropTypes;
+NimbleNote.propTypes = nimbleNotePropTypes;
 
-module.exports = Noted;
+module.exports = NimbleNote;

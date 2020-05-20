@@ -1,7 +1,7 @@
 const fuzzy = require('fuzzy');
 const Actions = require('./action-types');
 
-module.exports = class NotedActions {
+module.exports = class NimbleNoteActions {
 	constructor(notesHandler) {
 		this.notesHandler = notesHandler;
 	}
@@ -14,7 +14,7 @@ module.exports = class NotedActions {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to load notes',
-				message: `Noted was unable to load your notes from ${this.notesHandler.getPath()}`
+				message: `nimblenote was unable to load your notes from ${this.notesHandler.getPath()}`
 			};
 		}
 
@@ -31,7 +31,7 @@ module.exports = class NotedActions {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to delete note',
-				message: `Noted was unable to delete ${filename}`
+				message: `nimblenote was unable to delete ${filename}`
 			};
 		}
 
@@ -52,7 +52,7 @@ module.exports = class NotedActions {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to load note',
-				message: `Noted was unable to load ${filename}`
+				message: `nimblenote was unable to load ${filename}`
 			};
 		}
 
@@ -65,7 +65,7 @@ module.exports = class NotedActions {
 	}
 
 	moveToNextFile(files, currentlySelectedIndex, upDirection) {
-		const nextIndex = NotedActions._getNextFileIndex(
+		const nextIndex = NimbleNoteActions._getNextFileIndex(
 			upDirection,
 			currentlySelectedIndex,
 			files.length);
@@ -79,7 +79,7 @@ module.exports = class NotedActions {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to load note',
-				message: `Noted was unable to load ${filename}`
+				message: `nimblenote was unable to load ${filename}`
 			};
 		}
 
@@ -106,7 +106,7 @@ module.exports = class NotedActions {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to create note',
-				message: `Noted was unable to create note: ${filename}`
+				message: `nimblenote was unable to create note: ${filename}`
 			};
 		}
 
@@ -123,7 +123,7 @@ module.exports = class NotedActions {
 			return {
 				type: Actions.ERROR,
 				title: 'Unable to save note',
-				message: `Noted was unable to save ${filename}`
+				message: `nimblenote was unable to save ${filename}`
 			};
 		}
 
@@ -168,7 +168,7 @@ module.exports = class NotedActions {
 					return {
 						type: Actions.ERROR,
 						title: 'Unable to load note',
-						message: `Noted was unable to load ${filename}`
+						message: `nimblenote was unable to load ${filename}`
 					};
 				}
 			}
@@ -237,7 +237,7 @@ module.exports = class NotedActions {
 	}
 
 	static _helpText() {
-		return `Hello! And welcome to Noted.
+		return `Hello! And welcome to nimblenote!
 
 The top section of the screen is your search input. You use this to search for files, or to name and create a new file. You can access it anytime by pressing the \`Esc\` key on your keyboard.
 

@@ -2,11 +2,11 @@ const test = require('ava');
 const React = require('react');
 const {shallow} = require('enzyme');
 
-const Noted = require('./Noted');
+const NimbleNote = require('./NimbleNote');
 const TitleBar = require('./TitleBar');
 
-test('Noted contains TitleBar', t => {
-	const component = shallow(<Noted/>);
+test('NimbleNote contains TitleBar', t => {
+	const component = shallow(<NimbleNote/>);
 
 	t.true(component.contains(<TitleBar/>));
 });

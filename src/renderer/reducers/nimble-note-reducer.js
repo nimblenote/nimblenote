@@ -15,7 +15,7 @@ const initialState = {
 	focusOnSearch: true
 };
 
-function notedReducer(state, action) {
+function nimbleNoteReducer(state, action) {
 	if (action) {
 		switch (action.type) {
 			case Actions.SHOW_TITLEBAR:
@@ -119,4 +119,4 @@ function notedReducer(state, action) {
 	return state;
 }
 
-module.exports = {initialState, notedReducer};
+module.exports = {initialState, nimbleNoteReducer};

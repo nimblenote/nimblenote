@@ -17,7 +17,7 @@ class InMemoryStore {
 }
 
 test('create a new preference store with defaults', t => {
-	const expectedPath = path.join('~', 'NotedNotes');
+	const expectedPath = path.join('~', 'notes');
 
 	const preferences = new Preferences({StoreClass: InMemoryStore, userDataPath: '~'});
 

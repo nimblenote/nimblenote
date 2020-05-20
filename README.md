@@ -1,4 +1,4 @@
-# Noted
+# nimblenote
 
 ## Building
 

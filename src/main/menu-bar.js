@@ -125,7 +125,7 @@ module.exports = class MenuBar {
 				{
 					label: 'Learn More',
 					click: async () => {
-						await this._shell.openExternal('https://notedapp.org');
+						await this._shell.openExternal('https://nimblenote.app');
 					}
 				}
 			]
