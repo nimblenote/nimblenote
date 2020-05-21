@@ -30,5 +30,9 @@ $textColor: rgba(130, 150, 150, 1);
 	input {
 		background: #282c34;
 		border: 3px solid #4f5664;
+
+		&:focus {
+			border-color: #568af2;
+		}
 	}
 }
