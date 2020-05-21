@@ -1,4 +1,5 @@
 const {ipcMain, app, BrowserWindow, dialog, Menu, shell} = require('electron');
+const {argv} = require('yargs');
 const {userDataPath} = require('../lib/app-paths');
 const Store = require('electron-store');
 const logger = require('../lib/logger');
@@ -11,7 +12,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 logger.info('nimblenote');
 
-const preferences = new Preferences({StoreClass: Store, userDataPath});
+const preferences = new Preferences({StoreClass: Store, userDataPath}, argv);
 
 initMainListeners(ipcMain, preferences, dialog, logger);
 

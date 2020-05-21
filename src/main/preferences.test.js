@@ -35,3 +35,16 @@ test('it can set preferences', t => {
 
 	t.is(preferences.get('windowWidth'), 200);
 });
+
+test('preferences can be overridden', t => {
+	const overridePath = path.join('some', 'other', 'path');
+
+	const preferences = new Preferences({
+		StoreClass: InMemoryStore,
+		userDataPath: '~'
+	}, {
+		notesStoragePath: overridePath
+	});
+
+	t.is(preferences.get('notesStoragePath'), overridePath);
+});

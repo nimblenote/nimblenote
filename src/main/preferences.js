@@ -1,8 +1,9 @@
 const path = require('path');
 
 module.exports = class Preferences {
-	constructor(options) {
+	constructor(options, overrides = {}) {
 		this._userDataPath = options.userDataPath;
+		this._overrides = overrides;
 
 		this._defaults = {
 			windowWidth: 400,
@@ -17,6 +18,10 @@ module.exports = class Preferences {
 	}
 
 	get(key) {
+		if (key in this._overrides) {
+			return this._overrides[key];
+		}
+
 		return this._store.get(key);
 	}
 
