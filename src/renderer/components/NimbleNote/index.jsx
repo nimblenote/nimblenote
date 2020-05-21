@@ -127,7 +127,6 @@ const NimbleNote = ({
 	useEffect(() => {
 		onInit();
 
-		console.log('componentDidMount');
 		dispatch(loadFiles());
 		dispatch(showTitlebar());
 
@@ -143,15 +142,10 @@ const NimbleNote = ({
 	}, [focusOnSearch]);
 
 	useEffect(() => {
-		console.log('componentDidUpdate');
-		console.log('newlyCreatedFile');
 		editorInput.current.focus();
 	}, [newlyCreatedFile]);
 
 	useEffect(() => {
-		console.log('componentDidUpdate');
-		console.log('fileIndex');
-
 		if (fileIndex) {
 			const fileDom = fileList.current.childNodes[fileIndex];
 			fileDom.scrollIntoViewIfNeeded();
@@ -159,9 +153,6 @@ const NimbleNote = ({
 	}, [fileIndex]);
 
 	useEffect(() => {
-		console.log('componentDidUpdate');
-		console.log('startSelection');
-
 		if (startSelection !== false) {
 			searchInput.current.setSelectionRange(
 				startSelection,
