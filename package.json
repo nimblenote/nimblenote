@@ -4,16 +4,12 @@
 	"description": "Your notes, powered by the keyboard",
 	"homepage": "https://nimblenote.app",
 	"author": {
-		"name": "David Winter",
-		"email": "i@djw.me",
-		"url": "https://davidwinter.dev"
+		"name": "leaves under foot ltd",
+		"email": "hello@leavesunderfoot.com",
+		"url": "https://leavesunderfoot.com"
 	},
 	"version": "1.0.0",
 	"license": "UNLICENSED",
-	"repository": {
-		"type": "git",
-		"url": "https://gitlab.com/leavesunderfoot/nimblenote.git"
-	},
 	"scripts": {
 		"dev": "electron-webpack dev",
 		"lint": "xo",
