@@ -3,6 +3,7 @@
 ## Building
 
 ```sh
+iconutil --convert icns build/nimblenote.iconset -o build/icon.icns
 yarn dist
 ```
 
