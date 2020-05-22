@@ -64,7 +64,7 @@
 	"build": {
 		"appId": "com.leavesunderfoot.nimblenote",
 		"mac": {
-			"target": "default"
+			"target": ["mas", "zip"]
 		},
 		"linux": {
 			"target": "snap",
