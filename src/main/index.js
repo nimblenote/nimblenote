@@ -12,8 +12,6 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 logger.info('nimblenote');
 
-logger.info(`Document path: ${app.getPath('documents')}`);
-
 const preferences = new Preferences({StoreClass: Store, userDataPath}, argv);
 
 initMainListeners(ipcMain, preferences, dialog, logger);
