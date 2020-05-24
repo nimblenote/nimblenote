@@ -43,7 +43,8 @@ function nimbleNoteReducer(state, action) {
 			case Actions.CHANGE_SELECTED_FILE:
 				return {
 					...state,
-					fileIndex: action.nextIndex,
+					files: state.allFiles,
+					fileIndex: state.allFiles.indexOf(action.filename),
 					editorContent: action.content,
 					searchValue: action.filename,
 					startSelection: false,
@@ -71,9 +72,9 @@ function nimbleNoteReducer(state, action) {
 					...state,
 					searchValue: action.filename,
 					query: '',
-					files: [action.filename],
-					allFiles: state.allFiles.concat([action.filename]),
-					fileIndex: 0,
+					files: action.files,
+					allFiles: action.files,
+					fileIndex: action.newFileIndex,
 					editorContent: '',
 					editorDisabled: false,
 					newlyCreatedFile: true,

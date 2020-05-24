@@ -92,6 +92,9 @@ module.exports = class NimbleNoteActions {
 	}
 
 	create(filename) {
+		let files;
+		let newFileIndex;
+
 		if (this.notesHandler.exists(filename)) {
 			return {
 				type: Actions.ERROR,
@@ -102,6 +105,8 @@ module.exports = class NimbleNoteActions {
 
 		try {
 			this.notesHandler.write(filename, '');
+			({files} = this.list());
+			newFileIndex = files.indexOf(filename);
 		} catch {
 			return {
 				type: Actions.ERROR,
@@ -112,7 +117,9 @@ module.exports = class NimbleNoteActions {
 
 		return {
 			type: Actions.CREATE_FILE,
-			filename
+			filename,
+			files,
+			newFileIndex
 		};
 	}
 
