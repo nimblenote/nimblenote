@@ -1,14 +1,14 @@
 {
 	"name": "nimblenote",
 	"productName": "nimblenote",
-	"description": "Your notes, powered by the keyboard",
+	"description": "Simple keyboard-driven note taking",
 	"homepage": "https://nimblenote.app",
 	"author": {
 		"name": "leaves under foot ltd",
 		"email": "hello@leavesunderfoot.com",
 		"url": "https://leavesunderfoot.com"
 	},
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "UNLICENSED",
 	"scripts": {
 		"dev": "electron-webpack dev",
