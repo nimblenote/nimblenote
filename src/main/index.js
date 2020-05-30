@@ -19,7 +19,7 @@ initMainListeners(ipcMain, preferences, dialog, logger);
 const menuBar = new MenuBar({
 	isMac: process.platform === 'darwin',
 	isDevelopment,
-	appName: app.getName(),
+	appName: app.name,
 	shell
 });
 
