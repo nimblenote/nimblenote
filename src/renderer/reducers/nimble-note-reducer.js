@@ -40,11 +40,24 @@ function nimbleNoteReducer(state, action) {
 					files: action.files,
 					newlyCreatedFile: false
 				};
-			case Actions.CHANGE_SELECTED_FILE:
+			case Actions.OPEN_FILE:
 				return {
 					...state,
 					files: state.allFiles,
 					fileIndex: state.allFiles.indexOf(action.filename),
+					editorContent: action.content,
+					searchValue: action.filename,
+					startSelection: false,
+					endSelection: false,
+					query: action.filename,
+					editorDisabled: false,
+					newlyCreatedFile: false,
+					focusOnSearch: false
+				};
+			case Actions.CHANGE_SELECTED_FILE:
+				return {
+					...state,
+					fileIndex: action.nextIndex,
 					editorContent: action.content,
 					searchValue: action.filename,
 					startSelection: false,

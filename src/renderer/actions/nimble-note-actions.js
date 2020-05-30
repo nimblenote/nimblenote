@@ -57,7 +57,7 @@ module.exports = class NimbleNoteActions {
 		}
 
 		return {
-			type: Actions.CHANGE_SELECTED_FILE,
+			type: Actions.OPEN_FILE,
 			nextIndex: selectedIndex,
 			filename,
 			content
