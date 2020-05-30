@@ -14,9 +14,7 @@ module.exports = class AppWindow {
 
 	init() {
 		this._AppClass.on('window-all-closed', () => {
-			if (this._process.platform !== 'darwin') {
-				this._AppClass.quit();
-			}
+			this._AppClass.quit();
 		});
 
 		this._AppClass.on('activate', () => {
