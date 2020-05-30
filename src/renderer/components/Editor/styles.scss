@@ -3,6 +3,7 @@
 $bgColor: rgba(0, 43, 54, 1);
 $textColor: rgba(130, 150, 150, 1);
 
+:local {
 .editor {
 	border-top: 1px solid #181a1f;
 	flex: 2 1 0;
@@ -25,4 +26,5 @@ $textColor: rgba(130, 150, 150, 1);
 
 		@include scrollBars($textColor, $bgColor);
 	}
+}
 }

@@ -1,30 +1,32 @@
 $bgColor: rgba(0, 43, 54, 1);
 $textColor: rgba(130, 150, 150, 1);
 
-.searchinput {
-	flex: none;
-	padding: 10px;
-	margin: 0;
-
-	input {
-		background: inherit;
-		border: 3px solid #3a3f4b;
-		border-radius: 3px;
-		color: $textColor;
-		font-family: 'Roboto Mono';
-		font-size: 20px;
+:local {
+	.searchinput {
+		flex: none;
+		padding: 10px;
 		margin: 0;
-		outline: none;
-		padding: 8px;
-		width: 100%;
 
-		&:focus {
-			border-color: #568af2;
+		input {
+			background: inherit;
+			border: 3px solid #3a3f4b;
+			border-radius: 3px;
+			color: $textColor;
+			font-family: 'Roboto Mono';
+			font-size: 20px;
+			margin: 0;
+			outline: none;
+			padding: 8px;
+			width: 100%;
+
+			&:focus {
+				border-color: #568af2;
+			}
 		}
 	}
 }
 
-:global(.platform-darwin) .searchinput {
+:global(.platform-darwin) :local(.searchinput) {
 	background: #323031;
 
 	input {

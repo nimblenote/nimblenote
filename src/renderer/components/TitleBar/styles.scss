@@ -1,16 +1,18 @@
-.titlebar {
-	-webkit-app-region: drag;
-	-webkit-user-select: none;
-	background: #323031;
-	flex: none;
-	height: 25px;
-	text-align: center;
+:local {
+	.titlebar {
+		-webkit-app-region: drag;
+		-webkit-user-select: none;
+		background: #323031;
+		flex: none;
+		height: 25px;
+		text-align: center;
 
-	span {
-		color: #cccccc;
-		font-family: 'Roboto Mono';
-		font-weight: bold;
-		font-size: 0.8em;
-		line-height: 35px;
+		span {
+			color: #cccccc;
+			font-family: 'Roboto Mono';
+			font-weight: bold;
+			font-size: 0.8em;
+			line-height: 35px;
+		}
 	}
 }
