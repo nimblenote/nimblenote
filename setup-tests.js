@@ -1,4 +1,5 @@
 const {addHook} = require('pirates');
+const browserEnv = require('browser-env');
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 
@@ -12,3 +13,6 @@ require('@babel/register')({
 
 // Setup dummies for scss
 addHook(() => '', {exts: ['.scss']});
+
+// Needed for codemirror editor
+browserEnv(['window', 'document', 'navigator']);

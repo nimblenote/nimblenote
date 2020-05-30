@@ -1,30 +1,53 @@
+@import url('~codemirror/lib/codemirror.css');
+@import url('~codemirror/theme/solarized.css');
+
 @import "../../scrollBars";
 
 $bgColor: rgba(0, 43, 54, 1);
 $textColor: rgba(130, 150, 150, 1);
 
 :local {
-.editor {
-	border-top: 1px solid #181a1f;
-	flex: 2 1 0;
-	overflow: hidden;
-
-	textarea {
-		background: #282c34;
-		border: none;
-		box-sizing: border-box;
-		color: $textColor;
-		font-family: 'Roboto Mono';
-		font-size: 15px;
-		height: 100%;
-		margin: 0;
-		outline: none;
-		padding: 10px;
-		padding-right: 12px;
-		resize: none;
-		width: 100%;
-
-		@include scrollBars($textColor, $bgColor);
+	.editor {
+		border-top: 1px solid #181a1f;
+		flex: 2 1 0;
+		overflow: hidden;
 	}
 }
+
+.react-codemirror2, .CodeMirror {
+	height: 100%;
+}
+
+.CodeMirror-vscrollbar {
+	@include scrollBars($textColor, $bgColor);
+}
+
+.CodeMirror {
+	font-family: 'Roboto Mono';
+	font-size: 15px;
+
+	.CodeMirror-lines {
+		padding: 10px;
+	}
+
+	pre.CodeMirror-line {
+		padding: 0;
+	}
+
+	&:focus, &:hover {
+		.CodeMirror-vscrollbar {
+			&::-webkit-scrollbar, &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
+				display: initial;
+			}
+		}
+	}
+}
+
+.cm-s-solarized.CodeMirror {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.cm-s-solarized.cm-s-dark {
+	background: #282c34;
 }
