@@ -61,7 +61,10 @@
 		"appId": "com.leavesunderfoot.nimblenote",
 		"mac": {
 			"provisioningProfile": "nimblenote_distribution_profile.provisionprofile",
-			"target": ["mas", "zip"]
+			"target": [
+				"mas",
+				"zip"
+			]
 		},
 		"linux": {
 			"target": "snap",
