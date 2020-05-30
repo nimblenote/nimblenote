@@ -85,7 +85,7 @@ const NimbleNote = ({
 							dispatch(createFile(searchValue));
 						} else {
 							dispatch(selectFile(files, fileIndex));
-							editorInput.current.focus();
+							focusEditorIntoView();
 						}
 					}
 				}
@@ -124,6 +124,12 @@ const NimbleNote = ({
 		dispatch(updateFile(searchValue, event.target.value));
 	};
 
+	const focusEditorIntoView = () => {
+		editorInput.current.editor.focus();
+		editorInput.current.editor.scrollIntoView();
+		editorInput.current.editor.refresh();
+	};
+
 	useEffect(() => {
 		onInit();
 
@@ -142,7 +148,7 @@ const NimbleNote = ({
 	}, [focusOnSearch]);
 
 	useEffect(() => {
-		editorInput.current.focus();
+		focusEditorIntoView();
 	}, [newlyCreatedFile]);
 
 	useEffect(() => {

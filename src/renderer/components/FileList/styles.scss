@@ -3,35 +3,37 @@
 $bgColor: rgba(0, 43, 54, 1);
 $textColor: rgba(130, 150, 150, 1);
 
-.filelist {
-	border-top: 1px solid #181a1f;
-	flex: none;
-	height: 100px;
-	outline: none;
+:local {
+	.filelist {
+		border-top: 1px solid #181a1f;
+		flex: none;
+		height: 100px;
+		outline: none;
 
-	ul {
-		border: none;
-		color: $textColor;
-		font-family: 'Roboto Mono';
-		height: 100%;
-		margin: 0;
-		overflow: hidden;
-		overflow-y: overlay;
-		padding: 0;
-		width: 100%;
-
-		@include scrollBars($textColor, $bgColor);
-
-		li {
-			font-size: 15px;
-			list-style: none;
+		ul {
+			border: none;
+			color: $textColor;
+			font-family: 'Roboto Mono';
+			height: 100%;
 			margin: 0;
-			padding: 3px 10px;
-			white-space: pre;
+			overflow: hidden;
+			overflow-y: overlay;
+			padding: 0;
+			width: 100%;
+
+			@include scrollBars($textColor, $bgColor);
+
+			li {
+				font-size: 15px;
+				list-style: none;
+				margin: 0;
+				padding: 3px 10px;
+				white-space: pre;
+			}
 		}
 	}
-}
 
-.selected {
-	background: #3a3f4b;
+	.selected {
+		background: #3a3f4b;
+	}
 }

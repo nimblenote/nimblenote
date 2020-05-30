@@ -2,21 +2,37 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const styles = require('./styles.scss');
 
+const CodeMirror = require('react-codemirror2').Controlled;
+require('codemirror/mode/gfm/gfm'); // eslint-disable-line import/no-unassigned-import
+
 const Editor = ({
 	content = '',
 	inputref = {},
 	changeEvent = () => {},
 	isDisabled = true
 }) => {
+	const handleChange = (editor, data, value) => {
+		const event = {
+			target: {
+				value
+			}
+		};
+
+		return changeEvent(event);
+	};
+
+	const options = {
+		readOnly: isDisabled ? 'nocursor' : false,
+		lineWrapping: true,
+		viewportMargin: Infinity,
+		theme: 'solarized dark',
+		dragDrop: false,
+		mode: 'gfm'
+	};
+
 	return (
 		<div className={styles.editor}>
-			<textarea
-				ref={inputref}
-				value={content}
-				disabled={isDisabled ? 'disabled' : null}
-				placeholder={isDisabled ? 'No note selected' : 'Enter note contents...'}
-				onChange={changeEvent}
-			/>
+			<CodeMirror ref={inputref} options={options} value={content} onBeforeChange={handleChange}/>
 		</div>
 	);
 };
