@@ -6,3 +6,4 @@ thumbs.db
 logs/
 yarn-error.log
 snapcraft.login
+*.provisionprofile
