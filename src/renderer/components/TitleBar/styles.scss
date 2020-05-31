@@ -1,14 +1,16 @@
+@import "../../variables";
+
 :local {
 	.titlebar {
 		-webkit-app-region: drag;
 		-webkit-user-select: none;
-		background: #323031;
+		background: $titleBarBackground;
 		flex: none;
 		height: 25px;
 		text-align: center;
 
 		span {
-			color: #cccccc;
+			color: $titleBarText;
 			font-family: 'Roboto Mono';
 			font-weight: bold;
 			font-size: 0.8em;

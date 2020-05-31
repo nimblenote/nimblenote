@@ -1,5 +1,4 @@
-$bgColor: rgba(0, 43, 54, 1);
-$textColor: rgba(130, 150, 150, 1);
+@import '../../variables';
 
 :local {
 	.searchinput {
@@ -9,9 +8,9 @@ $textColor: rgba(130, 150, 150, 1);
 
 		input {
 			background: inherit;
-			border: 3px solid #3a3f4b;
+			border: 3px solid $searchInputBorder;
 			border-radius: 3px;
-			color: $textColor;
+			color: $searchInputText;
 			font-family: 'Roboto Mono';
 			font-size: 20px;
 			margin: 0;
@@ -20,21 +19,21 @@ $textColor: rgba(130, 150, 150, 1);
 			width: 100%;
 
 			&:focus {
-				border-color: #568af2;
+				border-color: $searchInputBorderFocus;
 			}
 		}
 	}
 }
 
 :global(.platform-darwin) :local(.searchinput) {
-	background: #323031;
+	background: $searchInputBackgroundMac;
 
 	input {
-		background: #282c34;
-		border: 3px solid #4f5664;
+		background: $searchInputFieldBackgroundMac;
+		border: 3px solid $searchInputBorderMac;
 
 		&:focus {
-			border-color: #568af2;
+			border-color: $searchInputBorderFocus;
 		}
 	}
 }

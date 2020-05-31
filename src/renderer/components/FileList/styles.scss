@@ -1,18 +1,16 @@
+@import '../../variables';
 @import "../../scrollBars";
-
-$bgColor: rgba(0, 43, 54, 1);
-$textColor: rgba(130, 150, 150, 1);
 
 :local {
 	.filelist {
-		border-top: 1px solid #181a1f;
+		border-top: 1px solid $fileListSeparator;
 		flex: none;
 		outline: none;
 		-webkit-user-select: none;
 
 		ul {
 			border: none;
-			color: $textColor;
+			color: $fileListText;
 			font-family: 'Roboto Mono';
 			height: 90px;
 			margin: 0;
@@ -21,7 +19,7 @@ $textColor: rgba(130, 150, 150, 1);
 			padding: 0;
 			width: 100%;
 
-			@include scrollBars($textColor, $bgColor);
+			@include scrollBars($fileListScrollBackground, $fileListScrollThumb);
 
 			li {
 				font-size: 15px;
@@ -35,14 +33,14 @@ $textColor: rgba(130, 150, 150, 1);
 	}
 
 	.selected {
-		background: #3a3f4b;
+		background: $fileListSelected;
 	}
 
 	.resizer {
 		height: 2px;
-		background: #21252b;
-		border-top: 3px solid #3a3f4b;
-		border-bottom: 3px solid #3a3f4b;
+		background: $fileListResizerLine;
+		border-top: 3px solid $fileListResizerBorders;
+		border-bottom: 3px solid $fileListResizerBorders;
 		cursor: row-resize;
 	}
 }

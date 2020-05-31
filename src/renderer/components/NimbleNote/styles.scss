@@ -1,7 +1,9 @@
+@import '../../variables';
+
 :local {
 	.container {
 		position: absolute;
-		background: #21252b;
+		background: $mainWindowBackground;
 		top: 0px;
 		bottom: 0;
 		left: 0;

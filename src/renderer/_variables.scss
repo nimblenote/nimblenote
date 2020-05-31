@@ -1,0 +1,23 @@
+$mainWindowBackground: #21252b;
+
+$titleBarBackground: #323031;
+$titleBarText: #cccccc;
+
+$searchInputBorder: #3a3f4b;
+$searchInputBorderFocus: #568af2;
+$searchInputText: rgba(130, 150, 150, 1);
+$searchInputBackgroundMac: $titleBarBackground;
+$searchInputFieldBackgroundMac: #282c34;
+$searchInputBorderMac: #4f5664;
+
+$fileListSeparator: #181a1f;
+$fileListText: $searchInputText;
+$fileListSelected: $searchInputBorder;
+$fileListResizerLine: $mainWindowBackground;
+$fileListResizerBorders: $searchInputBorder;
+$fileListScrollBackground: $fileListText;
+$fileListScrollThumb: $mainWindowBackground;
+
+$editorScrollBackground: $searchInputText;
+$editorScrollThumb: $mainWindowBackground;
+$editorBackground: $searchInputFieldBackgroundMac;
