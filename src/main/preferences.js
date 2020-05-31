@@ -8,6 +8,7 @@ module.exports = class Preferences {
 		this._defaults = {
 			windowWidth: 400,
 			windowHeight: 600,
+			fileListHeight: 95,
 			notesStoragePath: path.join(this._userDataPath, 'notes')
 		};
 

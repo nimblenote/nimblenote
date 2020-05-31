@@ -6,9 +6,10 @@ const FileList = ({
 	selectedIndex = '',
 	inputref = {},
 	files = [],
-	fileListHeight = '95px',
+	fileListHeight = 95,
 	changeEvent = () => {},
-	resizeEvent = () => {}
+	resizeEvent = () => {},
+	finishResizeEvent = () => {}
 }) => {
 	if (files) {
 		files = files.map((item, i) => {
@@ -33,7 +34,7 @@ const FileList = ({
 			value={selectedIndex}
 			role="presentation"
 			size="5"
-			style={{height: fileListHeight}}
+			style={{height: `${fileListHeight}px`}}
 			onClick={changeEvent}
 		>
 			{ files }
@@ -61,14 +62,14 @@ const FileList = ({
 			newHeight = 300;
 		}
 
-		newHeight = `${newHeight}px`;
-
 		resizeEvent(newHeight);
 	};
 
 	const stopDrag = _ => {
 		document.documentElement.removeEventListener('mousemove', doDrag, false);
 		document.documentElement.removeEventListener('mouseup', stopDrag, false);
+
+		finishResizeEvent(newHeight);
 	};
 
 	return (
@@ -83,9 +84,10 @@ FileList.propTypes = {
 	selectedIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	inputref: PropTypes.object,
 	files: PropTypes.arrayOf(PropTypes.string),
-	fileListHeight: PropTypes.string,
+	fileListHeight: PropTypes.number,
 	changeEvent: PropTypes.func,
-	resizeEvent: PropTypes.func
+	resizeEvent: PropTypes.func,
+	finishResizeEvent: PropTypes.func
 };
 
 module.exports = FileList;

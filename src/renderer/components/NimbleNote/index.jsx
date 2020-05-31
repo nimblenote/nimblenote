@@ -14,6 +14,7 @@ const nimbleNotePropTypes = {
 	showHelp: PropTypes.func,
 	showTitlebar: PropTypes.func,
 	resizeFileList: PropTypes.func,
+	persistFileListSize: PropTypes.func,
 	changeSelectedFile: PropTypes.func,
 	updateFile: PropTypes.func,
 	searchQuery: PropTypes.func,
@@ -30,7 +31,7 @@ const nimbleNotePropTypes = {
 	editorDisabled: PropTypes.bool,
 	titlebar: PropTypes.bool,
 	focusOnSearch: PropTypes.bool,
-	fileListHeight: PropTypes.string,
+	fileListHeight: PropTypes.number,
 	dispatch: PropTypes.func,
 	onInit: PropTypes.func,
 	onReady: PropTypes.func
@@ -47,6 +48,7 @@ const NimbleNote = ({
 	showHelp = () => {},
 	showTitlebar = () => {},
 	resizeFileList = () => {},
+	persistFileListSize = () => {},
 	newlyCreatedFile = false,
 	fileIndex = '',
 	allFiles = [],
@@ -59,7 +61,7 @@ const NimbleNote = ({
 	editorDisabled = true,
 	titlebar = true,
 	focusOnSearch = true,
-	fileListHeight = '95px',
+	fileListHeight = 95,
 	dispatch = () => {},
 	onInit = () => {},
 	onReady = () => {}
@@ -188,6 +190,7 @@ const NimbleNote = ({
 			<FileList
 				changeEvent={event => handleFileList(event)}
 				resizeEvent={handleFileListResize}
+				finishResizeEvent={persistFileListSize}
 				files={files}
 				selectedIndex={fileIndex}
 				inputref={fileList}

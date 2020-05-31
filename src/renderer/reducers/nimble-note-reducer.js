@@ -13,7 +13,7 @@ const initialState = {
 	editorDisabled: true,
 	newlyCreatedFile: false,
 	focusOnSearch: true,
-	fileListHeight: '95px'
+	fileListHeight: 95
 };
 
 function nimbleNoteReducer(state, action) {

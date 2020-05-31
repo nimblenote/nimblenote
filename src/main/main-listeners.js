@@ -3,6 +3,10 @@ module.exports = (ipcMain, preferences, dialog, logger) => {
 		event.returnValue = preferences.get(arg);
 	});
 
+	ipcMain.on('setPreference', (event, {key, value}) => {
+		preferences.set(key, value);
+	});
+
 	ipcMain.on('showError', (event, arg) => {
 		dialog.showErrorBox(arg.title, arg.content);
 	});

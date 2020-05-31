@@ -70,6 +70,13 @@ function resizeFileList(newSize) {
 	return nimbleNoteActions.resizeFileList(newSize);
 }
 
+function persistFileListSize(size) {
+	ipcRenderer.send('setPreference', {
+		key: 'fileListHeight',
+		value: size
+	});
+}
+
 module.exports = {
 	showTitlebar,
 	showHelp,
@@ -81,5 +88,6 @@ module.exports = {
 	createFile,
 	updateFile,
 	searchQuery,
-	resizeFileList
+	resizeFileList,
+	persistFileListSize
 };
