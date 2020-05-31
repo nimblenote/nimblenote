@@ -66,6 +66,10 @@ function searchQuery(files, query, previousQuery) {
 	return checkAndProcessError(nimbleNoteActions.search(files, query, previousQuery));
 }
 
+function resizeFileList(newSize) {
+	return nimbleNoteActions.resizeFileList(newSize);
+}
+
 module.exports = {
 	showTitlebar,
 	showHelp,
@@ -76,5 +80,6 @@ module.exports = {
 	resetToInitialState,
 	createFile,
 	updateFile,
-	searchQuery
+	searchQuery,
+	resizeFileList
 };

@@ -12,12 +12,18 @@ const initialState = {
 	editorContent: '',
 	editorDisabled: true,
 	newlyCreatedFile: false,
-	focusOnSearch: true
+	focusOnSearch: true,
+	fileListHeight: '95px'
 };
 
 function nimbleNoteReducer(state, action) {
 	if (action) {
 		switch (action.type) {
+			case Actions.RESIZE_FILELIST:
+				return {
+					...state,
+					fileListHeight: action.newSize
+				};
 			case Actions.SHOW_TITLEBAR:
 				return {
 					...state,

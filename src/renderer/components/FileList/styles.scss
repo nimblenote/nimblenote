@@ -7,14 +7,14 @@ $textColor: rgba(130, 150, 150, 1);
 	.filelist {
 		border-top: 1px solid #181a1f;
 		flex: none;
-		height: 100px;
 		outline: none;
+		-webkit-user-select: none;
 
 		ul {
 			border: none;
 			color: $textColor;
 			font-family: 'Roboto Mono';
-			height: 100%;
+			height: 90px;
 			margin: 0;
 			overflow: hidden;
 			overflow-y: overlay;
@@ -29,11 +29,20 @@ $textColor: rgba(130, 150, 150, 1);
 				margin: 0;
 				padding: 3px 10px;
 				white-space: pre;
+				cursor: default;
 			}
 		}
 	}
 
 	.selected {
 		background: #3a3f4b;
+	}
+
+	.resizer {
+		height: 2px;
+		background: #21252b;
+		border-top: 3px solid #3a3f4b;
+		border-bottom: 3px solid #3a3f4b;
+		cursor: row-resize;
 	}
 }

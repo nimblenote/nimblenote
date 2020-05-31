@@ -193,6 +193,13 @@ module.exports = class NimbleNoteActions {
 		};
 	}
 
+	resizeFileList(newSize) {
+		return {
+			type: Actions.RESIZE_FILELIST,
+			newSize
+		};
+	}
+
 	static showTitlebar(show) {
 		return {
 			type: Actions.SHOW_TITLEBAR,
