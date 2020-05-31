@@ -8,7 +8,6 @@ $textColor: rgba(130, 150, 150, 1);
 
 :local {
 	.editor {
-		border-top: 1px solid #181a1f;
 		flex: 2 1 0;
 		overflow: hidden;
 	}
@@ -16,10 +15,6 @@ $textColor: rgba(130, 150, 150, 1);
 
 .react-codemirror2, .CodeMirror {
 	height: 100%;
-}
-
-.CodeMirror-vscrollbar {
-	@include scrollBars($textColor, $bgColor);
 }
 
 .CodeMirror {
@@ -34,8 +29,18 @@ $textColor: rgba(130, 150, 150, 1);
 		padding: 0;
 	}
 
+	.CodeMirror-vscrollbar {
+		@include scrollBars($textColor, $bgColor);
+	}
+
 	&:focus, &:hover {
 		.CodeMirror-vscrollbar {
+			width: 10px;
+
+			&::-webkit-scrollbar {
+				width: 10px;
+			}
+
 			&::-webkit-scrollbar, &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
 				display: initial;
 			}
