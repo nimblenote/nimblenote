@@ -136,6 +136,7 @@ const NimbleNote = ({
 
 	const focusEditorIntoView = () => {
 		editorInput.current.editor.focus();
+		editorInput.current.editor.setCursor(0, 0);
 		editorInput.current.editor.scrollIntoView();
 		editorInput.current.editor.refresh();
 	};
