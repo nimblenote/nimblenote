@@ -9,6 +9,7 @@ const Editor = ({
 	content = '',
 	inputref = {},
 	changeEvent = () => {},
+	mouseListener = () => {},
 	isDisabled = true
 }) => {
 	const handleChange = (editor, data, value) => {
@@ -31,7 +32,7 @@ const Editor = ({
 	};
 
 	return (
-		<div className={styles.editor}>
+		<div className={styles.editor} onClick={mouseListener}>
 			<CodeMirror ref={inputref} options={options} value={content} onBeforeChange={handleChange}/>
 		</div>
 	);
@@ -41,6 +42,7 @@ Editor.propTypes = {
 	content: PropTypes.string,
 	inputref: PropTypes.object,
 	changeEvent: PropTypes.func,
+	mouseListener: PropTypes.func,
 	isDisabled: PropTypes.bool
 };
 

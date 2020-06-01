@@ -1,4 +1,5 @@
 const React = require('react');
+const Mousetrap = require('mousetrap');
 const PropTypes = require('prop-types');
 const {useRef, useEffect} = require('react');
 const styles = require('./styles.scss');
@@ -6,6 +7,7 @@ const TitleBar = require('../TitleBar');
 const SearchInput = require('../SearchInput');
 const FileList = require('../FileList');
 const Editor = require('../Editor');
+const MarkdownAction = require('../../../lib/markdown-action');
 
 const nimbleNotePropTypes = {
 	loadFiles: PropTypes.func,
@@ -15,6 +17,7 @@ const nimbleNotePropTypes = {
 	showTitlebar: PropTypes.func,
 	resizeFileList: PropTypes.func,
 	persistFileListSize: PropTypes.func,
+	openExternalLink: PropTypes.func,
 	changeSelectedFile: PropTypes.func,
 	updateFile: PropTypes.func,
 	searchQuery: PropTypes.func,
@@ -49,6 +52,7 @@ const NimbleNote = ({
 	showTitlebar = () => {},
 	resizeFileList = () => {},
 	persistFileListSize = () => {},
+	openExternalLink = () => {},
 	newlyCreatedFile = false,
 	fileIndex = '',
 	allFiles = [],
@@ -69,6 +73,42 @@ const NimbleNote = ({
 	const searchInput = useRef(null);
 	const fileList = useRef(null);
 	const editorInput = useRef(null);
+
+	Mousetrap.bind('alt+enter', () => {
+		dispatchMarkdownAction();
+	});
+
+	const mouseListener = event => {
+		if (event.altKey) {
+			dispatchMarkdownAction();
+		}
+	};
+
+	const dispatchMarkdownAction = () => {
+		const action = new MarkdownAction({text: editorContent});
+		const {line, ch} = editorInput.current.editor.getCursor();
+		const result = action.atCursor({line, ch});
+
+		if (result) {
+			if (result.type === 'checkbox') {
+				dispatch(updateFile(searchValue, result.text));
+				focusEditorIntoView(line, ch);
+			}
+
+			if (result.type === 'externalLink') {
+				dispatch(openExternalLink(result.value));
+			}
+
+			if (result.type === 'internalLink') {
+				const internalFileIndex = files.indexOf(result.value);
+
+				if (internalFileIndex >= 0) {
+					dispatch(selectFile(files, internalFileIndex));
+					focusEditorIntoView();
+				}
+			}
+		}
+	};
 
 	const handleKeyboard = event => {
 		if (['INPUT', 'DIV'].includes(event.target.tagName)) {
@@ -134,9 +174,9 @@ const NimbleNote = ({
 		dispatch(updateFile(searchValue, event.target.value));
 	};
 
-	const focusEditorIntoView = () => {
+	const focusEditorIntoView = (line = 0, ch = 0) => {
 		editorInput.current.editor.focus();
-		editorInput.current.editor.setCursor(0, 0);
+		editorInput.current.editor.setCursor(line, ch);
 		editorInput.current.editor.scrollIntoView();
 		editorInput.current.editor.refresh();
 	};
@@ -159,7 +199,9 @@ const NimbleNote = ({
 	}, [focusOnSearch]);
 
 	useEffect(() => {
-		focusEditorIntoView();
+		if (newlyCreatedFile === true) {
+			focusEditorIntoView();
+		}
 	}, [newlyCreatedFile]);
 
 	useEffect(() => {
@@ -202,6 +244,7 @@ const NimbleNote = ({
 				inputref={editorInput}
 				content={editorContent}
 				isDisabled={editorDisabled}
+				mouseListener={mouseListener}
 			/>
 		</div>
 	);
