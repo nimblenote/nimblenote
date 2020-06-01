@@ -199,7 +199,9 @@ const NimbleNote = ({
 	}, [focusOnSearch]);
 
 	useEffect(() => {
-		focusEditorIntoView();
+		if (newlyCreatedFile === true) {
+			focusEditorIntoView();
+		}
 	}, [newlyCreatedFile]);
 
 	useEffect(() => {
