@@ -14,7 +14,7 @@ logger.info('nimblenote');
 
 const preferences = new Preferences({StoreClass: Store, userDataPath}, argv);
 
-initMainListeners(ipcMain, preferences, dialog, logger);
+initMainListeners(ipcMain, preferences, dialog, logger, shell);
 
 const menuBar = new MenuBar({
 	isMac: process.platform === 'darwin',

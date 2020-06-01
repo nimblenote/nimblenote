@@ -1,4 +1,4 @@
-module.exports = (ipcMain, preferences, dialog, logger) => {
+module.exports = (ipcMain, preferences, dialog, logger, shell) => {
 	ipcMain.on('getPreference', (event, arg) => {
 		event.returnValue = preferences.get(arg);
 	});
@@ -17,5 +17,9 @@ module.exports = (ipcMain, preferences, dialog, logger) => {
 
 	ipcMain.on('showDialog', (event, args) => {
 		event.returnValue = dialog.showMessageBoxSync(args);
+	});
+
+	ipcMain.on('openExternalLink', (event, url) => {
+		shell.openExternal(url);
 	});
 };

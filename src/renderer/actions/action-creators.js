@@ -77,6 +77,10 @@ function persistFileListSize(size) {
 	});
 }
 
+function openExternalLink(url) {
+	ipcRenderer.send('openExternalLink', url);
+}
+
 module.exports = {
 	showTitlebar,
 	showHelp,
@@ -89,5 +93,6 @@ module.exports = {
 	updateFile,
 	searchQuery,
 	resizeFileList,
-	persistFileListSize
+	persistFileListSize,
+	openExternalLink
 };
