@@ -27,7 +27,7 @@ module.exports = class MarkdownAction {
 			return this._actionLink(matches, cursorPosition);
 		}
 
-		if ((matches = lineText.match(/^\s?- (\[[ |x]]) (.*)$/))) {
+		if ((matches = lineText.match(/^\s*[-*+] (\[[ |x]]) (.*)$/))) {
 			return this._actionToggleCheckbox(matches);
 		}
 	}

@@ -5,6 +5,8 @@ const text = `Hello
 
 - [ ] buy apples
 - [x] buy bananas
+	 + [ ] test
+  * [ ] another
 
 Test [a link](https://abc.com) and [another](http://123.co.uk) here.
 
@@ -12,7 +14,7 @@ Must finish [my todo](todo) list.
 
 All good.`;
 
-test('it will mark checkbox as done', t => {
+test('it will toggle checkbox with dash', t => {
 	let action = new MarkdownAction({text});
 	let result = action.atCursor({line: 2, ch: 3});
 
@@ -24,6 +26,8 @@ test('it will mark checkbox as done', t => {
 
 - [x] buy apples
 - [x] buy bananas
+	 + [ ] test
+  * [ ] another
 
 Test [a link](https://abc.com) and [another](http://123.co.uk) here.
 
@@ -43,6 +47,54 @@ All good.`
 
 - [x] buy apples
 - [ ] buy bananas
+	 + [ ] test
+  * [ ] another
+
+Test [a link](https://abc.com) and [another](http://123.co.uk) here.
+
+Must finish [my todo](todo) list.
+
+All good.`
+	});
+});
+
+test('it will toggle checkbox with plus list item', t => {
+	const action = new MarkdownAction({text});
+	const result = action.atCursor({line: 4, ch: 0});
+
+	t.deepEqual(result, {
+		type: 'checkbox',
+		key: 'test',
+		value: true,
+		text: `Hello
+
+- [ ] buy apples
+- [x] buy bananas
+	 + [x] test
+  * [ ] another
+
+Test [a link](https://abc.com) and [another](http://123.co.uk) here.
+
+Must finish [my todo](todo) list.
+
+All good.`
+	});
+});
+
+test('it will toggle checkbox with asterix list item', t => {
+	const action = new MarkdownAction({text});
+	const result = action.atCursor({line: 5, ch: 0});
+
+	t.deepEqual(result, {
+		type: 'checkbox',
+		key: 'another',
+		value: true,
+		text: `Hello
+
+- [ ] buy apples
+- [x] buy bananas
+	 + [ ] test
+  * [x] another
 
 Test [a link](https://abc.com) and [another](http://123.co.uk) here.
 
@@ -54,7 +106,7 @@ All good.`
 
 test('it will return an external URL to visit', t => {
 	const action = new MarkdownAction({text});
-	let result = action.atCursor({line: 5, ch: 52});
+	let result = action.atCursor({line: 7, ch: 52});
 
 	t.deepEqual(result, {
 		type: 'externalLink',
@@ -62,7 +114,7 @@ test('it will return an external URL to visit', t => {
 		value: 'http://123.co.uk'
 	});
 
-	result = action.atCursor({line: 5, ch: 29});
+	result = action.atCursor({line: 7, ch: 29});
 
 	t.deepEqual(result, {
 		type: 'externalLink',
@@ -73,7 +125,7 @@ test('it will return an external URL to visit', t => {
 
 test('it will return an internal note to visit', t => {
 	const action = new MarkdownAction({text});
-	const result = action.atCursor({line: 7, ch: 15});
+	const result = action.atCursor({line: 9, ch: 15});
 
 	t.deepEqual(result, {
 		type: 'internalLink',
@@ -84,14 +136,14 @@ test('it will return an internal note to visit', t => {
 
 test('it will not action an external link if cursor outside', t => {
 	const action = new MarkdownAction({text});
-	const result = action.atCursor({line: 5, ch: 0});
+	const result = action.atCursor({line: 7, ch: 0});
 
 	t.is(result, undefined);
 });
 
 test('it will do nothing if no action found', t => {
 	const action = new MarkdownAction({text});
-	const result = action.atCursor({line: 7, ch: 1});
+	const result = action.atCursor({line: 9, ch: 1});
 
 	t.is(result, undefined);
 });
