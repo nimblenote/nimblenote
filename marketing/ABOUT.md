@@ -13,10 +13,19 @@ _Search, create, edit and delete notes, all without the mouse._
 
 **Keywords (100 characters):**
 
-note, notes, noted, note taking, snippets, writing
+note, notes, noted, note taking, snippets, writing, notational, markdown
 
 **Promotional text (170 characters):**
 
+- New! Markdown highlighting
+- New! Markdown actions; toggle checkboxes, visit links, navigate between notes
+- Keyboard-driven user interface
+- Auto-saving of notes
+
+**Features:**
+
+- Markdown syntax highlighting
+- Markdown actions; toggle checkboxes, visit URLs, navigate between notes
 - Mouseless interaction; keyboard-driven user interface
 - Automatic saving of notes as you type
 - Fuzzy searching based on note names
@@ -27,6 +36,8 @@ note, notes, noted, note taking, snippets, writing
 **Description (4000 characters):**
 
 nimblenote's primary feature is being able to quickly take notes with a keyboard-driven interface, without needing a mouse.
+
+nimblenote supports Markdown, and features Markdown actions, where you can toggle checkbox items, visit links or even navigate between your notes; the potential to create your very own personal wiki of notes!
 
 When you first launch nimblenote, the focus of the keyboard will be within the search input. Start typing the name of a new note.
 
