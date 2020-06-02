@@ -6,24 +6,6 @@ module.exports = class NimbleNoteActions {
 		this.notesHandler = notesHandler;
 	}
 
-	list() {
-		let files = [];
-		try {
-			files = this.notesHandler.list();
-		} catch {
-			return {
-				type: Actions.ERROR,
-				title: 'Unable to load notes',
-				message: `nimblenote was unable to load your notes from ${this.notesHandler.getPath()}`
-			};
-		}
-
-		return {
-			type: Actions.LOAD_FILES,
-			files
-		};
-	}
-
 	delete(files, filename) {
 		try {
 			this.notesHandler.delete(filename);
@@ -105,7 +87,7 @@ module.exports = class NimbleNoteActions {
 
 		try {
 			this.notesHandler.write(filename, '');
-			({files} = this.list());
+			files = this.notesHandler.list();
 			newFileIndex = files.indexOf(filename);
 		} catch {
 			return {
@@ -197,13 +179,6 @@ module.exports = class NimbleNoteActions {
 		return {
 			type: Actions.RESIZE_FILELIST,
 			newSize
-		};
-	}
-
-	static showTitlebar(show) {
-		return {
-			type: Actions.SHOW_TITLEBAR,
-			titlebar: show
 		};
 	}
 

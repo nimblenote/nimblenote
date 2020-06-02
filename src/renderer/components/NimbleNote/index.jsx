@@ -10,11 +10,9 @@ const Editor = require('../Editor');
 const MarkdownAction = require('../../../lib/markdown-action');
 
 const nimbleNotePropTypes = {
-	loadFiles: PropTypes.func,
 	createFile: PropTypes.func,
 	selectFile: PropTypes.func,
 	showHelp: PropTypes.func,
-	showTitlebar: PropTypes.func,
 	resizeFileList: PropTypes.func,
 	persistFileListSize: PropTypes.func,
 	openExternalLink: PropTypes.func,
@@ -41,7 +39,6 @@ const nimbleNotePropTypes = {
 };
 
 const NimbleNote = ({
-	loadFiles = () => {},
 	createFile = () => {},
 	selectFile = () => {},
 	changeSelectedFile = () => {},
@@ -49,7 +46,6 @@ const NimbleNote = ({
 	searchQuery = () => {},
 	resetToInitialState = () => {},
 	showHelp = () => {},
-	showTitlebar = () => {},
 	resizeFileList = () => {},
 	persistFileListSize = () => {},
 	openExternalLink = () => {},
@@ -183,9 +179,6 @@ const NimbleNote = ({
 
 	useEffect(() => {
 		onInit();
-
-		dispatch(loadFiles());
-		dispatch(showTitlebar());
 
 		searchInput.current.focus();
 

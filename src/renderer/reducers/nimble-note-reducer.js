@@ -1,21 +1,5 @@
 const Actions = require('../actions/action-types');
 
-const initialState = {
-	titlebar: true,
-	searchValue: '',
-	query: '',
-	startSelection: false,
-	endSelection: false,
-	allFiles: [],
-	files: [],
-	fileIndex: '',
-	editorContent: '',
-	editorDisabled: true,
-	newlyCreatedFile: false,
-	focusOnSearch: true,
-	fileListHeight: 95
-};
-
 function nimbleNoteReducer(state, action) {
 	if (action) {
 		switch (action.type) {
@@ -23,11 +7,6 @@ function nimbleNoteReducer(state, action) {
 				return {
 					...state,
 					fileListHeight: action.newSize
-				};
-			case Actions.SHOW_TITLEBAR:
-				return {
-					...state,
-					titlebar: action.titlebar
 				};
 			case Actions.SHOW_HELP:
 				return {
@@ -37,13 +16,6 @@ function nimbleNoteReducer(state, action) {
 					files: [],
 					editorContent: action.helpText,
 					editorDisabled: true,
-					newlyCreatedFile: false
-				};
-			case Actions.LOAD_FILES:
-				return {
-					...state,
-					allFiles: action.files,
-					files: action.files,
 					newlyCreatedFile: false
 				};
 			case Actions.OPEN_FILE:
@@ -139,4 +111,4 @@ function nimbleNoteReducer(state, action) {
 	return state;
 }
 
-module.exports = {initialState, nimbleNoteReducer};
+module.exports = nimbleNoteReducer;

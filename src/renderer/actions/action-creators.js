@@ -14,10 +14,6 @@ const nimbleNoteActions = new NimbleNoteActions(notes);
 
 // Is this an unnecessary middleman to NimbleNoteActions?
 
-function showTitlebar() {
-	return NimbleNoteActions.showTitlebar(process.platform === 'darwin');
-}
-
 function showHelp() {
 	return NimbleNoteActions.help();
 }
@@ -35,10 +31,6 @@ function deleteFile(files, filename) {
 	if (confirmDelete === 0) {
 		return checkAndProcessError(nimbleNoteActions.delete(files, filename));
 	}
-}
-
-function loadFiles() {
-	return checkAndProcessError(nimbleNoteActions.list());
 }
 
 function selectFile(files, selectedIndex) {
@@ -82,10 +74,8 @@ function openExternalLink(url) {
 }
 
 module.exports = {
-	showTitlebar,
 	showHelp,
 	deleteFile,
-	loadFiles,
 	selectFile,
 	changeSelectedFile,
 	resetToInitialState,

@@ -1,15 +1,23 @@
+const fs = require('fs');
 const {ipcRenderer} = require('electron');
 const React = require('react');
 const {useReducer} = require('react');
 const Mousetrap = require('mousetrap');
 const ActionCreators = require('../actions/action-creators');
-const {initialState, nimbleNoteReducer} = require('../reducers/nimble-note-reducer');
+const nimbleNoteReducer = require('../reducers/nimble-note-reducer');
 const NimbleNote = require('../components/NimbleNote');
+const InitialState = require('../state/initial-state');
+const NotesHandler = require('../lib/notes-handler');
 
 const NimbleNoteApp = () => {
-	const fileListHeight = ipcRenderer.sendSync('getPreference', 'fileListHeight');
+	const notesStoragePath = ipcRenderer.sendSync(
+		'getPreference',
+		'notesStoragePath');
+	const notesHandler = new NotesHandler(notesStoragePath, fs);
 
-	const [state, dispatch] = useReducer(nimbleNoteReducer, {...initialState, fileListHeight});
+	const initialState = new InitialState({ipcRenderer, process, notesHandler});
+
+	const [state, dispatch] = useReducer(nimbleNoteReducer, initialState.getState());
 
 	// Ensure Mousetrap fires even if focus is within input fields
 	Mousetrap.prototype.stopCallback = () => false;
