@@ -50,20 +50,20 @@ build:linux:
     paths:
       - dist/*.snap
 
-build:mac:
-  stage: build
-  rules:
-    - if: '$CI_COMMIT_REF_NAME == "master"'
-      when: on_success
-  tags:
-    - macos
-  script:
-    - yarn # as cached packages will have been from Linux runner
-    - yarn build
-  artifacts:
-    paths:
-      - dist/*.zip
-      - dist/*.dmg
+# build:mac:
+#   stage: build
+#   rules:
+#     - if: '$CI_COMMIT_REF_NAME == "master"'
+#       when: on_success
+#   tags:
+#     - macos
+#   script:
+#     - yarn # as cached packages will have been from Linux runner
+#     - yarn build
+#   artifacts:
+#     paths:
+#       - dist/*.zip
+#       - dist/*.dmg
 
 release:snapstore:
   stage: release
