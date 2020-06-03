@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Default to `_home` note if it exists on app launch
+
 ## [1.1.0]
 
 ### Added
