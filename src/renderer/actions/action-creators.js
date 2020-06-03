@@ -74,15 +74,18 @@ function openExternalLink(url) {
 }
 
 module.exports = {
-	showHelp,
-	deleteFile,
-	selectFile,
-	changeSelectedFile,
-	resetToInitialState,
-	createFile,
-	updateFile,
-	searchQuery,
-	resizeFileList,
-	persistFileListSize,
-	openExternalLink
+	notesHandler: notes,
+	actionCreators: {
+		showHelp,
+		deleteFile,
+		selectFile,
+		changeSelectedFile,
+		resetToInitialState,
+		createFile,
+		updateFile,
+		searchQuery,
+		resizeFileList,
+		persistFileListSize,
+		openExternalLink
+	}
 };

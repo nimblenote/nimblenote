@@ -20,6 +20,7 @@ const nimbleNotePropTypes = {
 	updateFile: PropTypes.func,
 	searchQuery: PropTypes.func,
 	resetToInitialState: PropTypes.func,
+	deleteFile: PropTypes.func,
 	newlyCreatedFile: PropTypes.bool,
 	fileIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	allFiles: PropTypes.arrayOf(PropTypes.string),
@@ -49,6 +50,7 @@ const NimbleNote = ({
 	resizeFileList = () => {},
 	persistFileListSize = () => {},
 	openExternalLink = () => {},
+	deleteFile = () => {},
 	newlyCreatedFile = false,
 	fileIndex = '',
 	allFiles = [],
@@ -70,8 +72,21 @@ const NimbleNote = ({
 	const fileList = useRef(null);
 	const editorInput = useRef(null);
 
+	// Ensure Mousetrap fires even if focus is within input fields
+	Mousetrap.prototype.stopCallback = () => false;
+
 	Mousetrap.bind('alt+enter', () => {
 		dispatchMarkdownAction();
+	});
+
+	Mousetrap.bind(['mod+d'], () => {
+		const filename = files[fileIndex];
+
+		if (filename) {
+			dispatch(deleteFile(allFiles, filename));
+		}
+
+		return false;
 	});
 
 	const mouseListener = event => {
