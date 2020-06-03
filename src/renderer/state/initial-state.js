@@ -21,8 +21,22 @@ module.exports = class InitialState {
 			editorDisabled: true,
 			newlyCreatedFile: false,
 			focusOnSearch: true,
-			fileListHeight: this._getFileListHeight()
+			fileListHeight: this._getFileListHeight(),
+			...this._getHomeFile(files)
 		};
+	}
+
+	_getHomeFile(files) {
+		const homeIndex = files.indexOf('_home');
+
+		if (homeIndex >= 0) {
+			return {
+				searchValue: '_home',
+				fileIndex: homeIndex,
+				editorContent: this._notesHandler.read('_home'),
+				editorDisabled: false
+			};
+		}
 	}
 
 	_getFiles() {
