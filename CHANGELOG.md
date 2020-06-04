@@ -5,6 +5,8 @@
 ### Added
 
 - Default to `_home` note if it exists on app launch
+- Add some guidance on creating first note
+- Add formatted Help to make it easier to read
 
 ## [1.1.0]
 
