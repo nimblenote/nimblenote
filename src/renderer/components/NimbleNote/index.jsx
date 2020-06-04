@@ -7,6 +7,7 @@ const TitleBar = require('../TitleBar');
 const SearchInput = require('../SearchInput');
 const FileList = require('../FileList');
 const Editor = require('../Editor');
+const NoNotes = require('../NoNotes');
 const MarkdownAction = require('../../../lib/markdown-action');
 
 const nimbleNotePropTypes = {
@@ -238,22 +239,27 @@ const NimbleNote = ({
 				changeEvent={event => handleSearch(event)}
 				inputref={searchInput}
 			/>
-			<FileList
-				changeEvent={event => handleFileList(event)}
-				resizeEvent={handleFileListResize}
-				finishResizeEvent={persistFileListSize}
-				files={files}
-				selectedIndex={fileIndex}
-				inputref={fileList}
-				fileListHeight={fileListHeight}
-			/>
-			<Editor
-				changeEvent={event => handleEditor(event)}
-				inputref={editorInput}
-				content={editorContent}
-				isDisabled={editorDisabled}
-				mouseListener={mouseListener}
-			/>
+			{(files.length > 0) ? (
+				<>
+					<FileList
+						changeEvent={event => handleFileList(event)}
+						resizeEvent={handleFileListResize}
+						finishResizeEvent={persistFileListSize}
+						files={files}
+						selectedIndex={fileIndex}
+						inputref={fileList}
+						fileListHeight={fileListHeight}
+					/>
+					<Editor
+						changeEvent={event => handleEditor(event)}
+						inputref={editorInput}
+						content={editorContent}
+						isDisabled={editorDisabled}
+						mouseListener={mouseListener}
+					/>
+				</>
+			) : <NoNotes/>}
+
 		</div>
 	);
 };

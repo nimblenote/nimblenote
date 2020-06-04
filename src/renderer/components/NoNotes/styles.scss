@@ -1,0 +1,23 @@
+@import "../../variables";
+
+:local {
+	.noNotes {
+		font-family: 'Roboto Mono';
+		color: $fileListText;
+		padding: 10px;
+
+		h3 {
+			text-align: center;
+		}
+
+		kbd {
+			display: inline-block;
+			border-radius: 5px;
+			background: $noNotesKeyboardHintBackground;
+			font-weight: bold;
+			color: $noNotesKeyboardHintText;
+			padding: 5px;
+			box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+		}
+	}
+}
