@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [1.2.1] - 2020-06-04
+
+### Fixed
+
+- Fix bug whereby When search query is of note that doesn't exist, the NoNotes component appeared
+
 ## [1.2.0] - 2020-06-04
 
 ### Added
