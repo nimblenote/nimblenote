@@ -232,7 +232,7 @@ const NimbleNote = ({
 				changeEvent={event => handleSearch(event)}
 				inputref={searchInput}
 			/>
-			{(searchValue === '?') ? <Help/> : (
+			{(searchValue === '?') ? <Help openExternalLink={openExternalLink}/> : (
 				(files.length > 0) ? (
 					<>
 						<FileList
