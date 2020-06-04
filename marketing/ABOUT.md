@@ -1,6 +1,6 @@
 # nimblenote
 
-**Subtitle (30 characters):**
+## Subtitle (30 characters)
 
 _Keyboard-driven note taking_
 
@@ -11,18 +11,18 @@ _Search, create, edit and delete notes, all without the mouse._
 
 ***
 
-**Keywords (100 characters):**
+## Keywords (100 characters)
 
 note, notes, noted, note taking, snippets, writing, notational, markdown
 
-**Promotional text (170 characters):**
+## Promotional text (170 characters)
 
 - New! Markdown highlighting
 - New! Markdown actions; toggle checkboxes, visit links, navigate between notes
 - Keyboard-driven user interface
 - Auto-saving of notes
 
-**Features:**
+## Features
 
 - Markdown syntax highlighting
 - Markdown actions; toggle checkboxes, visit URLs, navigate between notes
@@ -33,7 +33,7 @@ note, notes, noted, note taking, snippets, writing, notational, markdown
 
 ***
 
-**Description (4000 characters):**
+## Description (4000 characters)
 
 nimblenote's primary feature is being able to quickly take notes with a keyboard-driven interface, without needing a mouse.
 
@@ -55,8 +55,14 @@ If you get lost, type in ? into the search input to display help information.
 
 nimblenote was inspired by Notational Velocity which unfortunately hasn't seen a release since 2011.
 
+## Reviews
+
+> "a rather splendid keyboard-driven note taking app for macOS and Linux"
+
+OMG! Ubuntu
+
 ***
 
-**Review help:**
+## Review help
 
 When you first launch the application, in the Search Input, you can enter a new name of a note, and then press enter to start adding content for it. When you're done, you can press ESC to jump back to the Search Input, to either search for existing notes you may have, or to type a new name to create a new note, following the steps above. The app focuses on keyboard-driven interaction, for speed of adding and editing notes.
