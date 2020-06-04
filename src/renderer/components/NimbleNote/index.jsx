@@ -233,7 +233,7 @@ const NimbleNote = ({
 				inputref={searchInput}
 			/>
 			{(searchValue === '?') ? <Help openExternalLink={openExternalLink}/> : (
-				(files.length > 0) ? (
+				(allFiles.length > 0) ? (
 					<>
 						<FileList
 							changeEvent={event => handleFileList(event)}
