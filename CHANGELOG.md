@@ -2,13 +2,18 @@
 
 ## [Unreleased]
 
+## [1.2.0] - 2020-06-04
+
 ### Added
 
 - Default to `_home` note if it exists on app launch
-- Add some guidance on creating first note
-- Add formatted Help to make it easier to read
+- Add some guidance on creating first notes
 
-## [1.1.0]
+### Changed
+
+- Formatted help text within `?` to make it easier to read and navigate
+
+## [1.1.0] - 2020-06-02
 
 ### Added
 
