@@ -1,0 +1,55 @@
+@import "../../variables";
+@import "../../scrollBars";
+
+:local {
+	.help {
+		font-family: 'Roboto Mono';
+		color: $fileListText;
+		padding: 10px;
+		overflow: hidden;
+		overflow-y: overlay;
+
+		@include scrollBars($fileListScrollBackground, $fileListScrollThumb);
+
+		a {
+			color: $helpLinksColor;
+		}
+
+		h3 {
+			margin-top: 0;
+		}
+
+		kbd {
+			display: inline-block;
+			border-radius: 5px;
+			background: $noNotesKeyboardHintBackground;
+			font-weight: bold;
+			color: $noNotesKeyboardHintText;
+			padding: 5px;
+			box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.75);
+		}
+
+		td {
+			vertical-align: top;
+			padding-bottom: 15px;
+
+			p {
+				margin-top: 0;
+			}
+		}
+
+		td:first-child {
+			width: 40%;
+			text-align: right;
+			padding-right: 10px;
+		}
+
+		td:last-child {
+			font-size: 0.8em;
+		}
+
+		tr:last-child td {
+			padding-bottom: 0;
+		}
+	}
+}

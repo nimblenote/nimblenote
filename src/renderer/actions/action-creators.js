@@ -14,10 +14,6 @@ const nimbleNoteActions = new NimbleNoteActions(notes);
 
 // Is this an unnecessary middleman to NimbleNoteActions?
 
-function showHelp() {
-	return NimbleNoteActions.help();
-}
-
 function deleteFile(files, filename) {
 	const confirmOptions = {
 		type: 'warning',
@@ -76,7 +72,6 @@ function openExternalLink(url) {
 module.exports = {
 	notesHandler: notes,
 	actionCreators: {
-		showHelp,
 		deleteFile,
 		selectFile,
 		changeSelectedFile,

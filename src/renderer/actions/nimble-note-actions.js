@@ -182,13 +182,6 @@ module.exports = class NimbleNoteActions {
 		};
 	}
 
-	static help() {
-		return {
-			type: Actions.SHOW_HELP,
-			helpText: this._helpText()
-		};
-	}
-
 	static reset() {
 		return {
 			type: Actions.RESET_TO_INITIAL_STATE
@@ -223,27 +216,5 @@ module.exports = class NimbleNoteActions {
 		}
 
 		return current;
-	}
-
-	static _helpText() {
-		return `Hello! And _welcome_ to **nimblenote**!
-
-## Navigating
-
-The top section of the screen is your search input. You use this to search for files, or to name and create a new file. You can access it anytime by pressing the \`esc\` key on your keyboard.
-
-The middle section of the app is your list of notes or search results. You can navigate this by using the \`up\` or \`down\` arrows when the search input is in focus.
-
-The bottom section of the app is this section, the editor. This is where you can edit the contents of your notes. You can focus this section by pressing \`enter\`. If a note is highlighted in the notes list, it will open that file. If no results are displayed, it will create a new note with the name of whatever is in the search input.
-
-## Markdown actions
-
-You can trigger Markdown actions for the following by positioning the cursor over a checkbox or link item and then pressing \`alt\` + \`enter\` or if using the mouse \`alt\` + \`click\`. This works for:
-
-- Toggling checkbox items
-- Visiting external links in your browser
-- Navigating between notes
-
-`;
 	}
 };

@@ -8,16 +8,6 @@ function nimbleNoteReducer(state, action) {
 					...state,
 					fileListHeight: action.newSize
 				};
-			case Actions.SHOW_HELP:
-				return {
-					...state,
-					searchValue: '?',
-					query: '?',
-					files: [],
-					editorContent: action.helpText,
-					editorDisabled: true,
-					newlyCreatedFile: false
-				};
 			case Actions.OPEN_FILE:
 				return {
 					...state,
