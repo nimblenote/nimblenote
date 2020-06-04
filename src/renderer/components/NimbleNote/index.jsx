@@ -253,7 +253,7 @@ const NimbleNote = ({
 						/>
 					</>
 				) : <NoNotes/>
-			)};
+			)}
 		</div>
 	);
 };
