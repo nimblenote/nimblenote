@@ -1,6 +1,6 @@
-<center>
+<p align="center">
     <img src="https://nimblenote.app/images/icon.png" alt="nimblenote logo" width="250"/>
-</center>
+</p>
 
 <h1 align="center"><a href="https://nimblenote.app" target="_blank">nimblenote</a></h1>
 
@@ -37,16 +37,7 @@ When you launch **nimblenote** you'll be greeted with a welcome page, and after 
 
 ## Get in touch
 
-Please feel free to email [hello@nimblenote.app](mailto:hello@nimblenote.app), and also be sure to sign-up for our newsletter:
-
-<form action="https://app.us2.list-manage.com/subscribe/post?u=f139df523c15cf4daf9e41722&amp;id=7052a5f1de" method="post" target="_blank" novalidate="">
-    <label for="mce-EMAIL">Email address</label>&nbsp;
-    <input type="email" name="EMAIL" id="mce-EMAIL">
-    <div style="position:absolute;left:-5000px" aria-hidden="true">
-        <input type="text" name="b_f139df523c15cf4daf9e41722_7052a5f1de" tabindex="-1">
-    </div>&nbsp;
-    <input type="submit" value="Subscribe" name="subscribe">
-</form>
+Please feel free to email [hello@nimblenote.app](mailto:hello@nimblenote.app) or follow us on twitter at [@nimblenoteapp](https://twitter.com/nimblenoteapp) for updates.
 
 ## Sponsor
 
