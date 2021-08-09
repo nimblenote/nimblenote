@@ -1,0 +1,16 @@
+name: publish-release
+
+on:
+  release:
+    types:
+      - published
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: trigger website rebuild
+        run: curl -i "${{ secrets.WEBSITE_DEPLOY_URL }}"
