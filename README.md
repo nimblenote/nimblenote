@@ -16,8 +16,8 @@ _"a rather splendid keyboard-driven note taking app for macOS and Linux"_ - [omg
 
 **nimblenote** is built with Electron and React and its goals are to be:
 
-* Free and (soon to be) open source
 * Cross platform for macOS, Linux and Windows
+* Free
 * Fast
 * Simple
 
@@ -42,7 +42,3 @@ Please feel free to email [hello@nimblenote.app](mailto:hello@nimblenote.app) or
 ## Sponsor
 
 Please help the development of **nimblenote** by [sponsoring me on GitHub](https://github.com/sponsors/davidwinter) ♥
-
-## Licence
-
-**nimblenote** is currently closed source, but will become open source as soon as I've tidied up the code a litle. It was originally a prototype...
